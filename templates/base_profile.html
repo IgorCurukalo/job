@@ -1,0 +1,54 @@
+{% load static %}
+{% include "inc/_inc.html" %}
+{% include "inc/_header.html" %}
+<!--{% load crispy_forms_tags %}-->
+<div class="base_profile">
+    <div class="base_profile__avatar">
+        <img class="" src="{{ user.profile.image.url }}" style="height: 200px; width: 150;">
+          <h2 class="account-heading">{{ user.username }}</h2>
+          <p class="text-secondary">{{ user.email }}</p>
+    </div>
+    <div class="">
+        <div class="base_profile_form">
+           <form method="POST" enctype="multipart/form-data">
+               {% csrf_token %}
+               <fieldset class="base_profile_form__fields">
+                   <legend class="base_profile_form__legend">Заполните ваш профиль/аватар</legend>
+                   {% for field in u_form %}
+                        <div class="base_profile_form__field">
+                            <label>{{ field.label }}</label>
+                            {{ field }}
+                            {% for error in field.errors %}
+                                <p style="color: red;">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                   {% endfor %}
+                   {% for field in p_form %}
+                        <div class="base_profile_form__field">
+                            <label>{{ field.label }}</label>
+                            {{ field }}
+                            {% for error in field.errors %}
+                                <p style="color: red;">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                   {% endfor %}
+                    <fieldsetavatar class="base_profile_form__fields__avatar">
+                        {% for field in p_form_avatar %}
+                           <div class="base_profile_form__field">
+                               <legend class="base_profile_form__legend">{{ field.label }}</legend>
+                                {{ field }}
+                                {% for error in field.errors %}
+                                    <p style="color: red;">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                       {% endfor %}
+                   </fieldsetavatar>
+                   <div class="base_profile_form__field">
+                       <button type="submit" Class="btn">Обновить</button>
+                   </div>
+               </fieldset>
+           </form>
+        </div>
+    </div>
+</div>
+{% include "inc/_footer.html" %}

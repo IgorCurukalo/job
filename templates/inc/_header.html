@@ -1,0 +1,44 @@
+{% load static %}
+{% block header %}
+
+    <body>
+        <!--[if lte IE 9]>
+                <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+       <header>
+           <div class="header">
+               <div class="header_information">
+                   <ul class="header_information_info">
+                       <li><a id="header_information_info" href="{% url 'index' %}">Job/workers</a></li>
+                       <li><a href="#">+8 999 *** ***</a></li>
+                   </ul>
+                   <div class="header_information_links">
+                       <a href="#">
+                           <i class="fa fa-facebook"></i>
+                       </a>
+                       <a href="#">
+                           <i class="fa fa-google-plus"></i>
+                       </a>
+                       <a href="#">
+                           <i class="fa fa-linkedin"></i>
+                       </a>
+                   </div>
+               </div>
+               <div class="header_navigation">
+                   <nav>
+                       <ul class="header_navigation_nav">
+                           <li><a  href="{% url 'index' %}">Главная</a></li>
+                           {% if user.is_authenticated %}
+                           <li><a href="{% url 'profile_user' %}">Мой профиль</a></li>
+                           <li><a href="#">Мои проекты</a></li>
+                           <li><a href="{% url 'logout' %}">Выйти</a></li>
+                           {% else %}
+                           <li><a href="{% url 'login' %}">Войти</a></li>
+                           <li><a href="{% url 'register' %}">Регистрация</a></li>
+                           {% endif %}
+                       </ul>
+                   </nav>
+               </div>
+           </div>
+        </header>
+{% endblock %}

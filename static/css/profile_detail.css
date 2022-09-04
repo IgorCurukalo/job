@@ -1,0 +1,104 @@
+.profile{
+    padding-right: 32px;
+    padding-left: 32px;
+    margin-top: 24px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.profile__update{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.profile_detail{
+    padding-right: 32px;
+    padding-left: 32px;
+    margin-top: 24px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.profile_detail__about{
+    outline: 1px solid #000;
+    border-radius: 10px;
+    padding: 10px;
+    margin:10px;
+    background-color: #A9A9A9;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+
+.profile_detail__about__img{
+
+}
+
+.profile_detail__about__all{
+
+}
+
+.profile_detail__about__biog{
+    width:300px;
+}
+
+.profile_detail__about__links{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap:10px;
+}
+
+.profile_detail__about__links a{
+    margin-right: 5px;
+    padding: 3px;
+    border-radius: 10px;
+}
+
+.profile_detail__about__links a:hover {
+    background-color: #DCDCDC;
+}
+
+
+img{
+    border-radius: 10px;
+}
+
+.profile__pk{
+    padding: 3px;
+    border-radius: 10px;
+    background-color: #A9A9A9;
+    text-align: center;
+}
+
+.profile__pk:hover{
+    background-color: #DCDCDC;
+}
+
+
+#button__update{
+    background-color: #A9A9A9;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10%;
+}
+
+#button__update:hover {
+  cursor: pointer;
+  background-color: #DCDCDC;
+
+}

@@ -1,0 +1,143 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    min-width:300px;
+}
+
+header{
+    background-color: #A9A9A9;
+}
+
+.header{
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    font-size: 14px;
+    line-height: 1.5;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.header_information{
+    display: flex;
+    flex-direction: row;
+}
+
+#header_information_info{
+    font-size: 25px;
+    font-weight:bold;
+}
+
+ul.header_information_info{
+    margin: 0;
+    padding: 4px;
+}
+
+ul.header_information_info li{
+    color: #000000;
+    display: inline;
+    margin-right: 5px;
+    padding: 3px;
+}
+
+.header_information_links{
+    display: flex;
+    flex-direction: row;
+}
+
+.header_navigation {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+ul.header_navigation_nav {
+    margin: 0;
+    padding: 4px;
+}
+
+ul.header_navigation_nav li{
+    display: inline;
+    margin-right: 5px;
+    padding: 3px;
+    border-radius: 10px;
+}
+
+ul.header_navigation_nav li:hover {
+    background-color: #DCDCDC;
+}
+
+
+body{
+    background: url('../img/fon.jpg');
+}
+
+
+footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #A9A9A9;
+}
+
+.footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 16px;
+    font-size: 14px;
+    line-height: 1.5;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+ul.footer_info{
+    margin: 0;
+    padding: 4px;
+}
+
+ul.footer_info li{
+    color: #000000;
+    display: inline;
+    margin-right: 5px;
+    padding: 3px;
+}
+
+ul.footer_links{
+    margin: 0;
+    padding: 4px;
+}
+
+ul.footer_links li{
+    color: #000000;
+    display: inline;
+    margin-right: 5px;
+    padding: 3px;
+    border-radius: 10px;
+}
+
+ul.footer_links li:hover {
+    background-color: #DCDCDC;
+}
+
+button{
+    margin-top: 10px;
+}
+
+

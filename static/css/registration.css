@@ -1,0 +1,25 @@
+.base_registration{
+    padding-right: 32px;
+    padding-left: 32px;
+    margin-top: 24px;
+}
+
+.base_registration_form{
+    max-width: 300px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-bottom: 100px;
+}
+
+.base_registration_form__field{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.base_registration_form__alternative{
+    font-size: 12px;
+    font-weight:bold;
+    text-align: center;
+    margin-top: 10px;
+}

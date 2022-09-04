@@ -1,0 +1,19 @@
+{% load static %}
+
+{% include "inc/_inc.html" %}
+
+{% include "inc/_header.html" %}
+
+{% if user.is_active %}
+<div class="profil_list__filter">
+    <h3>Поиск программистов</h3>
+    <a id="button__find" href="{% url 'программист' %}">Найти</a>
+</div>
+
+<div class="profil_list__filter">
+    <h3>Поиск компании</h3>
+    <a id="button__find" href="{% url 'компания' %}">Найти</a>
+</div>
+{% endif %}
+
+{% include "inc/_footer.html" %}

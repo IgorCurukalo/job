@@ -1,0 +1,33 @@
+{% load static %}
+
+{% include "inc/_inc.html" %}
+
+{% include "inc/_header.html" %}
+    <div class="base_registration">
+        <div class="base_registration_form">
+            <form action="" method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="base_registration_form__field">
+                    <label for="formInput#text">{{ field.label }}</label>
+                    {{ field }}
+
+                {% for error in field.errors %}
+                <p style="color: red;">{{ error }}</p>
+                {% endfor %}
+
+                </div>
+
+                {% endfor %}
+                <div class="base_registration_form__field">
+                <button type="submit">Зарегистрировать пользователя</button>
+                </div>
+            </form>
+            <div class="base_registration_form__alternative">
+                <p>Уже есть аккаунт?</p>
+                <a href="{% url 'login' %}">Войти</a>
+            </div>
+        </div>
+    </div>
+
+{% include "inc/_footer.html" %}

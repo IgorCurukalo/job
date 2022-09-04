@@ -1,0 +1,63 @@
+.profil_list__filter{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+}
+
+.profil_list__filter form{
+    text-align: center;
+}
+
+#id_skills{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.profil_list__filter__fields{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.profil_list__filter__button{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#button__find{
+    background-color: #A9A9A9;
+
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+#button__find:hover {
+  cursor: pointer;
+  background-color: #DCDCDC;
+
+}
+
+.profile__block {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.profile__page{
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}

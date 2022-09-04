@@ -1,0 +1,57 @@
+{% load static %}
+
+{% include "inc/_inc.html" %}
+
+{% include "inc/_header.html" %}
+
+{% if user.is_active %}
+    <div class="profil_list__filter">
+        <H3>Поиск ...</H3>
+        <form method="get" class="#">
+            <div class="profil_list__filter__fields">
+            {{ filter.form.as_p }}
+            </div>
+            <div class="profil_list__filter__button">
+                <button id="button__find" type="submit" Class="btn">Найти</button>
+            </div>
+        </form>
+    </div>
+{% endif %}
+
+        <div class="profile__block">
+        {% for prof in page_obj %}
+            <div class="profile__pk">
+                <a href="{{ prof.pk }}">
+                    <div>
+                        <img src="{{ prof.image.url }}" class="" style="height: 200px; width: 150;">
+                    </div>
+                    <div class="profile__pk_user">
+                        <h3>{{ prof.profile_name }}</h3>
+                    </div>
+                    <div class="profile__pk_skills">
+                        {% for skill in prof.skills.all %}
+                            <p>{{ skill.skills_name }}</p>
+                        {% endfor %}
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+        </div>
+
+<div class="profile__page">
+    {% if page_obj.has_previous %}
+        <a href="?page=1">&laquo; Первый</a>
+        <a href="?page={{ page_obj.previous_page_number }}">Предыдущий</a>
+    {% endif %}
+
+    <span class="">
+        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+    </span>
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Следующий</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">Последний &raquo;</a>
+    {% endif %}
+</div>
+
+{% include "inc/_footer.html" %}
