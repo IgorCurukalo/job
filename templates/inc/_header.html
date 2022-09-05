@@ -2,9 +2,6 @@
 {% block header %}
 
     <body>
-        <!--[if lte IE 9]>
-                <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-        <![endif]-->
        <header>
            <div class="header">
                <div class="header_information">
@@ -30,7 +27,6 @@
                            <li><a  href="{% url 'index' %}">Главная</a></li>
                            {% if user.is_authenticated %}
                            <li><a href="{% url 'profile_user' %}">Мой профиль</a></li>
-                           <li><a href="#">Мои проекты</a></li>
                            <li><a href="{% url 'logout' %}">Выйти</a></li>
                            {% else %}
                            <li><a href="{% url 'login' %}">Войти</a></li>

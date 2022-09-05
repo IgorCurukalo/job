@@ -1,18 +1,13 @@
 from django.shortcuts import render, redirect
 from django_filters.views import FilterView
 from django.views.generic import DetailView, ListView
-from django.http import HttpResponse
-from django.template import Context, loader
-from django.core.paginator import Paginator
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
-
-from django.conf import settings
-from django.http import HttpResponseRedirect
 from app.users.forms import RegistrationForm, LoginForm, UserUpdateForm, ProfileUpdateForm, ProfileUpdateFormAvatar
 from app.users.models import Profile
+from app.projects.models import Project
 from app.users.filters import ProfileFilter
 
 def create_user(request):
@@ -62,7 +57,6 @@ def logout_user(request):
 
 @login_required
 def profile(request):
-    user = request.user
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST,
@@ -93,8 +87,8 @@ def profile(request):
 @login_required
 def userAccount(request):
     profile = request.user.profile
-    skills = profile.skills.all()
-    context = {'profile': profile, 'skills': skills}
+    projects = Project.objects.filter(user=request.user)
+    context = {'profile': profile, 'projects': projects}
     return render(request, 'users/profile_account.html', context)
 
 @login_required
@@ -151,6 +145,12 @@ class ProfileListProg(FilterView):
 class ProfileDetail(DetailView):
 
     model = Profile
+    pk_url_kwarg = 'pk'
+
+
+class ProjectDetail(DetailView):
+
+    model = Project
     pk_url_kwarg = 'pk'
 
 

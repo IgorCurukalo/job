@@ -30,6 +30,8 @@ li {
 a {
     text-decoration: none;
     color: #000000;
+    padding: 10px;
+    margin:10px;
 }
 
 .header_information{
@@ -139,5 +141,23 @@ ul.footer_links li:hover {
 button{
     margin-top: 10px;
 }
+
+.img_project{
+    height: 500px;
+    width: 500px;
+}
+
+.img_project__mini{
+    height: 200px;
+    width: 150px;
+    padding:10px;
+    border-radius: 20px;
+}
+
+.img_profile{
+    height: 200px;
+    width: 150px;
+}
+
 
 

@@ -1,5 +1,7 @@
 from django.urls import path
-from app.users.views import create_user, login_user, logout_user, profile, ProfileListProg, ProfileListCom, Index, ProfileDetail, userAccount, editAccount
+from app.users.views import create_user, login_user, logout_user\
+    , profile, ProfileListProg, ProfileListCom, Index, ProfileDetail\
+    , userAccount, editAccount, ProjectDetail
 
 
 urlpatterns = [
@@ -14,4 +16,5 @@ urlpatterns = [
     path('profile_list_prog/<int:pk>', ProfileDetail.as_view(), name='profile_detail'),
     path('profile_list_com/<int:pk>', ProfileDetail.as_view(), name='profile_detail'),
     path('profile_list/', userAccount, name='profile_user'),
+    path('profile_list/<int:pk>', ProjectDetail.as_view(), name='project'),
     ]

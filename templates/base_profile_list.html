@@ -18,26 +18,26 @@
     </div>
 {% endif %}
 
-        <div class="profile__block">
-        {% for prof in page_obj %}
-            <div class="profile__pk">
-                <a href="{{ prof.pk }}">
-                    <div>
-                        <img src="{{ prof.image.url }}" class="" style="height: 200px; width: 150;">
-                    </div>
-                    <div class="profile__pk_user">
-                        <h3>{{ prof.profile_name }}</h3>
-                    </div>
-                    <div class="profile__pk_skills">
-                        {% for skill in prof.skills.all %}
-                            <p>{{ skill.skills_name }}</p>
-                        {% endfor %}
-                    </div>
-                </a>
+<div class="profile__block">
+{% for prof in page_obj %}
+    <div class="profile__pk">
+        <a href="{{ prof.pk }}">
+            <div>
+                <img src="{{ prof.image.url }}" class="img_profile">
             </div>
-        {% endfor %}
-        </div>
+            <div class="profile__pk_user">
+                <h3>{{ prof.profile_name }}</h3>
+            </div>
+            <div class="profile__pk_skills">
+                {% for skill in prof.skills.all %}
+                    <p>{{ skill.skills_name }}</p>
+                {% endfor %}
+            </div>
+        </a>
+    </div>
+{% endfor %}
 
+</div>
 <div class="profile__page">
     {% if page_obj.has_previous %}
         <a href="?page=1">&laquo; Первый</a>

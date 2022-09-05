@@ -36,7 +36,34 @@
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
+    height: 100%;
+}
 
+.profile_detail__about_col{
+    outline: 1px solid #000;
+    border-radius: 10px;
+    padding: 10px;
+    margin:10px;
+    background-color: #A9A9A9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    height: 100%;
+}
+
+.profile_detail__about_crow{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    height: 100%;
+}
+
+.profile_detail__about_crow a:hover {
+    border-radius: 30px;
+    background-color: #DCDCDC;
 }
 
 .profile_detail__about__img{
@@ -95,10 +122,10 @@ img{
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 10%;
+    outline: 1px solid #000;
 }
 
 #button__update:hover {
   cursor: pointer;
   background-color: #DCDCDC;
-
 }
