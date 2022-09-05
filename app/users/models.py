@@ -3,21 +3,16 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from app.projects.models import Project
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='Программист')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='Пользователь')
     profile_name = models.CharField(max_length=250, blank=True, null=True, verbose_name='Программист/компания')
     tel = models.CharField(max_length=16, blank=True, verbose_name='Телефон')
     skills = models.ManyToManyField(
         'Skills',
         related_name='skills',
         verbose_name='Скиллы')
-    projects = models.ManyToManyField(
-        Project,
-        related_name='project',
-        verbose_name='Проекты')
     id_type_user = models.ForeignKey('TypeUser',
                                      on_delete=models.CASCADE,
                                      related_name='typeuser_profile',
