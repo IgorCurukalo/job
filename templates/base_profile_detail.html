@@ -6,49 +6,67 @@
 
 
 <main>
-    <div class="profile_detail">
-        <div class="profile_detail__about">
-            <div class="profile_detail__about__img">
-                <img src="{{ profile.image.url }}" class="img_profile" >
-            </div>
+    <div class="profile">
+        <div class="profile_detail">
+            <div class="profile_detail__about">
+                <div class="profile_detail__about__img">
+                    <img src="{{ profile.image.url }}" class="img_profile">
+                </div>
             <div class="profile_detail__about__all">
-                {% if profile.profile_name %}
-                    <p>{{ profile.profile_name }}</p>
-                {% endif %}
-                {% if profile.skills %}
-                <h3>Скиллы:</h3>
-                    {% for skill in profile.skills.all %}
-                        <p>{{ skill.skills_name }}</p>
-                    {% endfor %}
-                {% endif %}
-                <h3>Адрес:</h3>
-                {% if profile.adr %}
-                    <p>{{ profile.adr }}</p>
-                {% endif %}
-                <h3>Описание:</h3>
-                {% if profile.biog %}
-                    <p class="profile_detail__about__biog">{{ profile.biog }}</p>
-                {% endif %}
-                <h3>Ссылки:</h3>
-                <div class="profile_detail__about__links">
-                    {% if profile.github %}
-                        <a href="#">{{ profile.github }}</a>
+                    {% if profile.profile_name %}
+                        <p>{{ profile.profile_name }}</p>
                     {% endif %}
-                    {% if profile.twitter %}
-                        <a href="#">{{ profile.twitter }}</a>
+                    {% if profile.skills %}
+                        <h3>Скиллы:</h3>
+                        {% for skill in profile.skills.all %}
+                            <p>{{ skill.skills_name }}</p>
+                        {% endfor %}
                     {% endif %}
-                    {% if profile.youtube %}
-                        <a href="#">{{ profile.youtube }}</a>
+                    {% if profile.tel %}
+                        <h3>Телефон:</h3>
+                        <p>{{ profile.tel }}</p>
                     {% endif %}
-                    {% if profile.website %}
-                        <a href="#">{{ profile.website }}</a>
+                    {% if profile.adr %}
+                        <h3>Адрес:</h3>
+                        <p>{{ profile.adr }}</p>
+                    {% endif %}
+                    {% if profile.biog %}
+                        <h3>Описание:</h3>
+                        <p class="profile_detail__about__biog">{{ profile.biog }}</p>
+                    {% endif %}
+                    <h3>Ссылки:</h3>
+                    <div class="profile_detail__about__links">
+                        {% if profile.github %}
+                            <a href="#">{{ profile.github }}</a>
+                        {% endif %}
+                        {% if profile.twitter %}
+                            <a href="#">{{ profile.twitter }}</a>
+                        {% endif %}
+                        {% if profile.youtube %}
+                            <a href="#">{{ profile.youtube }}</a>
+                        {% endif %}
+                        {% if profile.website %}
+                            <a href="#">{{ profile.website }}</a>
+                        {% endif %}
+                    </div>
+                </div>
+        </div>
+            <div class="profile_detail__about_col">
+                <div class="">
+                    {% if profile.id_type_user.type_user_name == 'компания' %}
+                        <p>Вакансии:</p>
+                    {% else %}
+                        <p>Проекты:</p>
                     {% endif %}
                 </div>
-            </div>
-        </div>
-        <div>
-            <div class="profile_detail__about">
-                <p>Проекты/вакансии</p>
+                <div class="profile_detail__about_crow">
+                    {% for pro in projects%}
+                        <a href="{{ pro.id }}">
+                            <img src="{{ pro.image.url }}" class="img_project__mini">
+                            <p>{{ pro.title }}</p>
+                        </a>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>

@@ -4,20 +4,110 @@
 
 {% include "inc/_header.html" %}
 
-{% if user.is_active %}
-<div class="index">
-    <div class="index__button">
-        <H3><a id="button__find" href="{% url 'программист' %}">Поиск программистов</a></H3>
-    </div>
+<!--<div class="hr">-->
 
-    <div class="index__button">
-         <H3><a id="button__find" href="{% url 'компания' %}">Поиск компании</a></H3>
-    </div>
+<main>
+    {% if user.is_active %}
+        <div class="index">
+            <div class="index__button">
+                <H3><a href="{% url 'программист' %}">
+                    <div class="index__button">
+                        <img src="/media/fon/programmer.jpg">
+                        Поиск программистов
+                    </div>
+                </a></H3>
+            </div>
 
-     <div class="index__button">
-         <H3><a id="button__find" href="#">Поиск вакансий</a></H3>
-    </div>
-</div>
-{% endif %}
+            <div class="index__button">
+                 <H3><a href="{% url 'компания' %}">
+                     <div class="index__button">
+                        <img src="/media/fon/company.jpg">
+                        Поиск компании
+                    </div>
+                 </a></H3>
+            </div>
 
+             <div class="index__button">
+                 <H3><a href="#">
+                     <div class="index__button">
+                        <img src="/media/fon/work.jpg">
+                        Поиск вакансии
+                     </div>
+                 </a></H3>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="slider_central">
+    <!--    Последние 10 пользователей-->
+            <div class="container">
+                {% for prog in profileprog  %}
+                    <div class="mySlides">
+                        <a href="profile_list_com/{{ prog.pk }}">
+                            <div class="centers">
+                                    <img src="{{ prog.image.url }}">
+                                    <h3>{{ prog.profile_name }}</h3>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+              <a class="prev" onclick="plusSlides(-1)">❮</a>
+              <a class="next" onclick="plusSlides(1)">❯</a>
+              <a>
+                  <div class="row">
+                      {% for prog in profileprog  %}
+                            <img class="demo cursor column__img" src="{{ prog.image.url }}" onclick="currentSlide({{ prog.forloop.counter }})" alt="Последние 10 пользователей">
+                      {% endfor %}
+                  </div>
+                  <h4>Последние 6 программистов</h4>
+              </a>
+            </div>
+    <!--    Последние 10 компаний-->
+            <div class="container">
+                {% for com in profilecom  %}
+                    <div class="mySlides2">
+                        <a href="profile_list_com/{{ com.pk }}">
+                            <div class="centers">
+                                    <img src="{{ com.image.url }}">
+                                    <h3>{{ com.profile_name }}</h3>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+              <a class="prev" onclick="plusSlides2(-1)">❮</a>
+              <a class="next" onclick="plusSlides2(1)">❯</a>
+              <a>
+                  <div class="row">
+                      {% for com in profilecom  %}
+                            <img class="demo2 cursor column__img" src="{{ com.image.url }}" onclick="currentSlide2({{ com.forloop.counter }})" alt="Последние 10 компаний">
+                      {% endfor %}
+                  </div>
+                  <h4>Последние 6 компаний</h4>
+              </a>
+            </div>
+        <!--    Последние 10 вакансий-->
+            <div class="container">
+                {% for com in profilecom  %}
+                    <div class="mySlides3">
+                        <a href="profile_list_com/{{ com.pk }}">
+                            <div class="centers">
+                                    <img src="{{ com.image.url }}">
+                                    <h3>{{ com.profile_name }}</h3>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+              <a class="prev" onclick="plusSlides3(-1)">❮</a>
+              <a class="next" onclick="plusSlides3(1)">❯</a>
+              <a>
+                  <div class="row">
+                      {% for com in profilecom  %}
+                            <img class="demo3 cursor column__img" src="{{ com.image.url }}" onclick="currentSlide3({{ com.forloop.counter }})" alt="Последние 10 компаний">
+                      {% endfor %}
+                  </div>
+                  <h4>Последние 6 вакансий</h4>
+              </a>
+            </div>
+    </div>
+</main>
 {% include "inc/_footer.html" %}

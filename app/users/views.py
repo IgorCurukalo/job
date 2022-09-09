@@ -55,7 +55,6 @@ def logout_user(request):
     auth.logout(request)
     return redirect('index')
 
-@login_required
 def profile(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
@@ -84,16 +83,13 @@ def profile(request):
     }
     return render(request, 'users/profile.html', context)
 
-@login_required
 def userAccount(request):
     profile = request.user.profile
     projects = Project.objects.filter(user=request.user)
     context = {'profile': profile, 'projects': projects}
     return render(request, 'users/profile_account.html', context)
 
-@login_required
 def editAccount(request):
-    user = request.user
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST,
@@ -123,7 +119,6 @@ def editAccount(request):
 
 
 class ProfileListCom(FilterView):
-
     model = Profile
     filterset_class = ProfileFilter
     context_object_name = 'profile'
@@ -133,7 +128,6 @@ class ProfileListCom(FilterView):
 
 
 class ProfileListProg(FilterView):
-
     model = Profile
     filterset_class = ProfileFilter
     context_object_name = 'profile'
@@ -143,23 +137,35 @@ class ProfileListProg(FilterView):
 
 
 class ProfileDetail(DetailView):
-
     model = Profile
     pk_url_kwarg = 'pk'
 
+    def get_context_data(self, **kwargs):
+        context = super(ProfileDetail, self).get_context_data(**kwargs)
+        context['projects'] = Project.objects.filter(user=self.object.user)
+        return context
+
 
 class ProjectDetail(DetailView):
-
     model = Project
     pk_url_kwarg = 'pk'
+
+    # def get_context_data(self, **kwargs):
+    #     context = super(ProfileDetail, self).get_context_data(**kwargs)
+    #     context['vacancis'] = Vacanci.objects.filter(user=self.object.user)
+    #     return context
 
 
 class Index(ListView):
     model = Profile
-    context_object_name = 'profile'
     template_name = 'users/index.html'
+    # queryset = Profile.objects.filter(id_type_user__type_user_name='компания')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['profile'] = self.queryset
+        context['profilecom'] = Profile.objects.filter(id_type_user__type_user_name='компания')
+        context['profileprog'] = Profile.objects.filter(id_type_user__type_user_name='программист')
+        # context['vacancis'] = Project.objects.all().order_by('-id')[:10][::-1]
         return context
+
+

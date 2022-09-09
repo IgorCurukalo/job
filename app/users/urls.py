@@ -15,6 +15,6 @@ urlpatterns = [
     path('profile_list_com/', ProfileListCom.as_view(), name='компания'),
     path('profile_list_prog/<int:pk>', ProfileDetail.as_view(), name='profile_detail'),
     path('profile_list_com/<int:pk>', ProfileDetail.as_view(), name='profile_detail'),
-    path('profile_list/', userAccount, name='profile_user'),
-    path('profile_list/<int:pk>', ProjectDetail.as_view(), name='project'),
+    path('profile_user/', userAccount, name='profile_user'),
+    path('profile_user/<int:pk>', ProjectDetail.as_view(), name='project'),
     ]

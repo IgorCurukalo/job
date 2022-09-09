@@ -5,6 +5,7 @@
 {% include "inc/_header.html" %}
 
 {% if user.is_active %}
+<main>
     <div class="profil_list__filter">
         <H3>Поиск ...</H3>
         <form method="get" class="#">
@@ -53,5 +54,5 @@
         <a href="?page={{ page_obj.paginator.num_pages }}">Последний &raquo;</a>
     {% endif %}
 </div>
-
+</main>
 {% include "inc/_footer.html" %}

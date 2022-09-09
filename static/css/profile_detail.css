@@ -75,7 +75,8 @@
 }
 
 .profile_detail__about__biog{
-    width:300px;
+    width:400px;
+    align: left;
 }
 
 .profile_detail__about__links{

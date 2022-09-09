@@ -2,13 +2,14 @@
 {% include "inc/_inc.html" %}
 {% include "inc/_header.html" %}
 <!--{% load crispy_forms_tags %}-->
+<main>
 <div class="base_profile">
     <div class="base_profile__avatar">
         <img class="img_profile" src="{{ user.profile.image.url }}">
           <h2 class="account-heading">{{ user.username }}</h2>
           <p class="text-secondary">{{ user.email }}</p>
     </div>
-    <div class="">
+    <div class="base_profile__form">
         <div class="base_profile_form">
            <form method="POST" enctype="multipart/form-data">
                {% csrf_token %}
@@ -32,7 +33,7 @@
                             {% endfor %}
                         </div>
                    {% endfor %}
-                    <fieldsetavatar class="base_profile_form__fields__avatar">
+                    <fieldset class="base_profile_form__fields__avatar">
                         {% for field in p_form_avatar %}
                            <div class="base_profile_form__field">
                                <legend class="base_profile_form__legend">{{ field.label }}</legend>
@@ -42,13 +43,15 @@
                                 {% endfor %}
                             </div>
                        {% endfor %}
-                   </fieldsetavatar>
+                   </fieldset>
                    <div class="base_profile_form__field">
-                       <button type="submit" Class="btn">Обновить</button>
+                       <button type="submit" class="button_upd">Обновить</button>
+                       <a href="{% url 'profile_user' %}" class="button">Отмена</a>
                    </div>
                </fieldset>
            </form>
         </div>
     </div>
 </div>
+</main>
 {% include "inc/_footer.html" %}

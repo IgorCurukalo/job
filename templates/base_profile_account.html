@@ -19,17 +19,21 @@
                         <p>{{ profile.profile_name }}</p>
                     {% endif %}
                     {% if profile.skills %}
-                    <h3>Скиллы:</h3>
+                        <h3>Скиллы:</h3>
                         {% for skill in profile.skills.all %}
                             <p>{{ skill.skills_name }}</p>
                         {% endfor %}
                     {% endif %}
-                    <h3>Адрес:</h3>
+                    {% if profile.tel %}
+                        <h3>Телефон:</h3>
+                        <p>{{ profile.tel }}</p>
+                    {% endif %}
                     {% if profile.adr %}
+                        <h3>Адрес:</h3>
                         <p>{{ profile.adr }}</p>
                     {% endif %}
-                    <h3>Описание:</h3>
                     {% if profile.biog %}
+                        <h3>Описание:</h3>
                         <p class="profile_detail__about__biog">{{ profile.biog }}</p>
                     {% endif %}
                     <h3>Ссылки:</h3>
