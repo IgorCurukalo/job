@@ -1,7 +1,7 @@
 import re
 from django.core.exceptions import ValidationError
 
-
+# валидация имени проекта
 def validation_project_name(name):
 
     if re.fullmatch(r'[A-ZА-ЯЁ0-9!?:-].*', name):

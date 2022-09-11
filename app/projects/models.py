@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-
+#проекты
 class Project(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, default="", verbose_name='Пользователь')
     title = models.CharField(max_length=100, verbose_name='Название проекта')

@@ -2,7 +2,7 @@ from django import forms
 from app.projects.models import Project
 from app.projects.validators import validation_project_name
 
-
+#форма обновления проекта
 class ProjectUpdateForm(forms.ModelForm):
 
     title = forms.CharField(
@@ -20,6 +20,7 @@ class ProjectUpdateForm(forms.ModelForm):
             'description': forms.Textarea(),
         }
 
+#форма обновления проекта аватара
 class ProjectUpdateFormAvatar(forms.ModelForm):
 
     class Meta:

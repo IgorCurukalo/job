@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django_filters.views import FilterView
-from django.views.generic import DetailView, ListView
+from django.views.generic import DetailView, ListView, DeleteView
 from django.core.paginator import Paginator
 from django.conf import settings
 from django.urls import reverse_lazy
@@ -12,6 +12,7 @@ from app.users.models import Profile
 from app.projects.models import Project
 from app.users.filters import ProfileFilter
 
+#Создание пользователя
 def create_user(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
@@ -30,6 +31,7 @@ def create_user(request):
     }
     return render(request, 'users/registration.html', context=context)
 
+#авторизация пользователя
 def login_user(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -50,10 +52,12 @@ def login_user(request):
     }
     return render(request, 'users/login.html', context=context)
 
+#отключение пользователя
 def logout_user(request):
     auth.logout(request)
     return redirect('index')
 
+#просмотр профиля авторизованного пользователя для заполнения реквизитов
 def profile(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
@@ -82,12 +86,14 @@ def profile(request):
     }
     return render(request, 'users/profile.html', context)
 
+#просмотр акаунта пользователя (профиль + проекты)
 def userAccount(request):
     profile = request.user.profile
     projects = Project.objects.filter(user=request.user)
     context = {'profile': profile, 'projects': projects}
     return render(request, 'users/profile_account.html', context)
 
+#изменение аккаунта пользователя
 def editAccount(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
@@ -117,6 +123,7 @@ def editAccount(request):
     return render(request, 'users/profile.html', context)
 
 
+#Список профилей-компаний
 class ProfileListCom(FilterView):
     model = Profile
     filterset_class = ProfileFilter
@@ -126,6 +133,7 @@ class ProfileListCom(FilterView):
     paginate_by = 3
 
 
+#Список профилей-программистов
 class ProfileListProg(FilterView):
     model = Profile
     filterset_class = ProfileFilter
@@ -135,6 +143,7 @@ class ProfileListProg(FilterView):
     paginate_by = 3
 
 
+#детализация профиля пользователя
 class ProfileDetail(DetailView):
     model = Profile
     pk_url_kwarg = 'pk'
@@ -145,24 +154,21 @@ class ProfileDetail(DetailView):
         return context
 
 
-class ProjectDetail(DetailView):
-    model = Project
-    pk_url_kwarg = 'pk'
-
-    # def get_context_data(self, **kwargs):
-    #     context = super(ProfileDetail, self).get_context_data(**kwargs)
-    #     context['vacancis'] = Vacanci.objects.filter(user=self.object.user)
-    #     return context
+# удаление пользователя
+class deleteAccount(DeleteView):
+    model = User
+    template_name = 'users/profile_delete.html'
+    success_url = reverse_lazy('index')
 
 
+#
 class Index(ListView):
     model = Profile
     template_name = 'users/index.html'
 
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['profilecom'] = Profile.objects.filter(id_type_user__type_user_name='компания')
-        context['profileprog'] = Profile.objects.filter(id_type_user__type_user_name='программист')
+        context['profilecom'] = Profile.objects.filter(id_type_user__type_user_name='компания').order_by('-id')[:5][::-1]
+        context['profileprog'] = Profile.objects.filter(id_type_user__type_user_name='программист').order_by('-id')[:5][::-1]
         # context['vacancis'] = Project.objects.all().order_by('-id')[:10][::-1]
         return context

@@ -39,7 +39,7 @@
     {% endif %}
 
     <div class="slider_central">
-    <!--    Последние 10 пользователей-->
+    <!--    Последние 5 программистов-->
             <div class="container">
                 {% for prog in profileprog  %}
                     <div class="mySlides">
@@ -59,10 +59,10 @@
                             <img class="demo cursor column__img" src="{{ prog.image.url }}" onclick="currentSlide({{ forloop.counter }})" alt="Последние 10 пользователей">
                       {% endfor %}
                   </div>
-                  <h4>Последние 6 программистов</h4>
+                  <h4>Последние 5 программистов</h4>
               </a>
             </div>
-    <!--    Последние 10 компаний-->
+    <!--    Последние 5 компаний-->
             <div class="container">
                 {% for com in profilecom  %}
                     <div class="mySlides2">
@@ -82,10 +82,10 @@
                             <img class="demo2 cursor column__img" src="{{ com.image.url }}" onclick="currentSlide2({{ forloop.counter }})" alt="Последние 10 компаний">
                       {% endfor %}
                   </div>
-                  <h4>Последние 6 компаний</h4>
+                  <h4>Последние 5 компаний</h4>
               </a>
             </div>
-        <!--    Последние 10 вакансий-->
+        <!--    Последние 5 вакансий-->
             <div class="container">
                 {% for com in profilecom  %}
                     <div class="mySlides3">
@@ -105,7 +105,7 @@
                             <img class="demo3 cursor column__img" src="{{ com.image.url }}" onclick="currentSlide3({{ forloop.counter }})" alt="Последние 10 компаний">
                       {% endfor %}
                   </div>
-                  <h4>Последние 6 вакансий</h4>
+                  <h4>Последние 5 вакансий</h4>
               </a>
             </div>
     </div>

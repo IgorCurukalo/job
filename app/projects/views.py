@@ -1,4 +1,4 @@
-from django.views.generic import UpdateView, DeleteView, CreateView
+from django.views.generic import UpdateView, DeleteView, DetailView, CreateView
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 from app.projects.models import Project
@@ -29,5 +29,17 @@ class DeleteProject(DeleteView):
     model = Project
     template_name = 'projects/project_delete.html'
     success_url = reverse_lazy('profile_user')
+
+
+# детализация проекта
+class ProjectDetail(DetailView):
+    model = Project
+    pk_url_kwarg = 'pk'
+
+
+    # def get_context_data(self, **kwargs):
+    #     context = super(ProfileDetail, self).get_context_data(**kwargs)
+    #     context['vacancis'] = Vacanci.objects.filter(user=self.object.user)
+    #     return context
 
 
