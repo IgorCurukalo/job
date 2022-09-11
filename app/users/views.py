@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from django_filters.views import FilterView
 from django.views.generic import DetailView, ListView
+from django.core.paginator import Paginator
+from django.conf import settings
+from django.urls import reverse_lazy
 from django.contrib import auth
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
 from app.users.forms import RegistrationForm, LoginForm, UserUpdateForm, ProfileUpdateForm, ProfileUpdateFormAvatar
@@ -11,7 +13,6 @@ from app.projects.models import Project
 from app.users.filters import ProfileFilter
 
 def create_user(request):
-
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
@@ -30,7 +31,6 @@ def create_user(request):
     return render(request, 'users/registration.html', context=context)
 
 def login_user(request):
-
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -51,7 +51,6 @@ def login_user(request):
     return render(request, 'users/login.html', context=context)
 
 def logout_user(request):
-
     auth.logout(request)
     return redirect('index')
 
@@ -102,14 +101,14 @@ def editAccount(request):
             p_form_avatar = p_form_avatar.save(commit=False)
             p_form_avatar.user = request.user.profile.user
             p_form_avatar.save()
-            return redirect('index')
+            return redirect('profile')
     else:
         if request.user.profile.image != 'profile_images/default.jpg':
             u_form = UserUpdateForm(instance=request.user)
             p_form = ProfileUpdateForm(instance=request.user.profile)
             p_form_avatar = ProfileUpdateFormAvatar(instance=request.user.profile)
         else:
-            return redirect('index')
+            return redirect('profile')
     context = {
         'u_form': u_form,
         'p_form': p_form,
@@ -122,7 +121,7 @@ class ProfileListCom(FilterView):
     model = Profile
     filterset_class = ProfileFilter
     context_object_name = 'profile'
-    template_name = 'users/profile_list.html'
+    template_name = 'users/profile_detail.html'
     queryset = Profile.objects.filter(id_type_user__type_user_name='компания')
     paginate_by = 3
 
@@ -131,7 +130,7 @@ class ProfileListProg(FilterView):
     model = Profile
     filterset_class = ProfileFilter
     context_object_name = 'profile'
-    template_name = 'users/profile_list.html'
+    template_name = 'users/profile_detail.html'
     queryset = Profile.objects.filter(id_type_user__type_user_name='программист')
     paginate_by = 3
 

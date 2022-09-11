@@ -30,6 +30,8 @@ class Profile(models.Model):
     twitter = models.CharField(max_length=100, blank=True, null=True, verbose_name='Ссылка на twitter')
     youtube = models.CharField(max_length=100, blank=True, null=True, verbose_name='Ссылка на youtube')
     website = models.CharField(max_length=100, blank=True, null=True, verbose_name='Ссылка на сайт')
+    # date_add = models.DateTimeField(auto_now_add=True, null=True, verbose_name='Дата добавления')
+    # is_deleted = models.BooleanField(default=False, verbose_name='Удалено')
 
     @receiver(post_save, sender=User)
     def create_profile(sender, instance, created, **kwargs):
@@ -46,6 +48,7 @@ class Profile(models.Model):
     class Meta:
         verbose_name = 'Профиль'
         verbose_name_plural = 'Профили'
+
 
 class TypeUser(models.Model):
     type_user_name = models.CharField(max_length=100, blank=True, null=True, verbose_name='Тип пользователя')

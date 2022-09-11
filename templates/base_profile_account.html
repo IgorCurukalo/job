@@ -10,8 +10,13 @@
             <div class="profile_detail__about">
                 <div class="profile_detail__about__img">
                     <img src="{{ profile.image.url }}" class="img_profile">
-                    <div class="profile__update">
-                        <a id="button__update" href="{% url 'editAccount' %}">Изменить</a>
+                    <div class="flex_row">
+                        <div class="profile__update">
+                            <a id="button__update" href="{% url 'editAccount' %}">Изменить</a>
+                        </div>
+                        <div class="profile__update">
+                            <a id="button__update" href="{% url 'addProject' %}">Добавить проект</a>
+                        </div>
                     </div>
                 </div>
                 <div class="profile_detail__about__all">
@@ -39,16 +44,16 @@
                     <h3>Ссылки:</h3>
                     <div class="profile_detail__about__links">
                         {% if profile.github %}
-                            <a href="#">{{ profile.github }}</a>
+                            <a href={{ profile.github }}>{{ profile.github }}</a>
                         {% endif %}
                         {% if profile.twitter %}
-                            <a href="#">{{ profile.twitter }}</a>
+                            <a href={{ profile.twitter }}>{{ profile.twitter }}</a>
                         {% endif %}
                         {% if profile.youtube %}
-                            <a href="#">{{ profile.youtube }}</a>
+                            <a href={{ profile.youtube }}>{{ profile.youtube }}</a>
                         {% endif %}
                         {% if profile.website %}
-                            <a href="#">{{ profile.website }}</a>
+                            <a href={{ profile.website }}>{{ profile.website }}</a>
                         {% endif %}
                     </div>
                 </div>

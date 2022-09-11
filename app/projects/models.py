@@ -4,14 +4,14 @@ from django.contrib.auth.models import User
 
 class Project(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, default="", verbose_name='Пользователь')
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=100, verbose_name='Название проекта')
     image = models.ImageField(null=True,
                               blank=True,
                               upload_to='profile_project',
                               default="profile_project/default.jpg",
                               verbose_name='Фото проекта')
-    description = models.TextField(null=True, blank=True)
-    demo_link = models.CharField(max_length=500, null=True, blank=True)
+    description = models.TextField(null=True, blank=True, verbose_name='Описание проекта')
+    demo_link = models.CharField(max_length=500, null=True, blank=True, verbose_name='Демо-ссылка')
     date_add = models.DateTimeField(auto_now_add=True, verbose_name='Дата добавления')
     is_deleted = models.BooleanField(default=False, verbose_name='Удалено')
 

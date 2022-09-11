@@ -22,6 +22,10 @@
     background-color: #A9A9A9;
 }
 
+.base_profile_form__fields p{
+    padding: 10px;
+}
+
 .base_profile_form__fields__avatar{
     display: block;
     margin-top: 10px;

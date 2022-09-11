@@ -24,6 +24,7 @@
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
+    max-width:90%;
 }
 
 .profile_detail__about{
@@ -112,8 +113,7 @@ img{
     background-color: #DCDCDC;
 }
 
-
-#button__update{
+.button__update{
     background-color: #A9A9A9;
     padding: 10px;
     text-align: center;
@@ -126,7 +126,7 @@ img{
     outline: 1px solid #000;
 }
 
-#button__update:hover {
+.button__update:hover {
   cursor: pointer;
   background-color: #DCDCDC;
 }

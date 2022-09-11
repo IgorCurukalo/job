@@ -226,13 +226,13 @@ ul.footer_links li:hover {
 }
 
 .img_project{
-    height: 500px;
-    width: 500px;
+    height: 300px;
+    width: 300px;
 }
 
 .img_project__mini{
-    height: 200px;
-    width: 200px;
+    height: 100px;
+    width: 100px;
     padding:10px;
     border-radius: 20px;
 }
@@ -244,6 +244,13 @@ ul.footer_links li:hover {
 
 main{
     overflow-y: auto;
-    max-height: 80%
+    max-height: 69.8%;
+}
+
+.flex_row {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
