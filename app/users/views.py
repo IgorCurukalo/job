@@ -121,7 +121,7 @@ class ProfileListCom(FilterView):
     model = Profile
     filterset_class = ProfileFilter
     context_object_name = 'profile'
-    template_name = 'users/profile_detail.html'
+    template_name = 'users/profile_list.html'
     queryset = Profile.objects.filter(id_type_user__type_user_name='компания')
     paginate_by = 3
 
@@ -130,7 +130,7 @@ class ProfileListProg(FilterView):
     model = Profile
     filterset_class = ProfileFilter
     context_object_name = 'profile'
-    template_name = 'users/profile_detail.html'
+    template_name = 'users/profile_list.html'
     queryset = Profile.objects.filter(id_type_user__type_user_name='программист')
     paginate_by = 3
 
@@ -158,7 +158,7 @@ class ProjectDetail(DetailView):
 class Index(ListView):
     model = Profile
     template_name = 'users/index.html'
-    # queryset = Profile.objects.filter(id_type_user__type_user_name='компания')
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -166,5 +166,3 @@ class Index(ListView):
         context['profileprog'] = Profile.objects.filter(id_type_user__type_user_name='программист')
         # context['vacancis'] = Project.objects.all().order_by('-id')[:10][::-1]
         return context
-
-
