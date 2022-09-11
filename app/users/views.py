@@ -161,7 +161,7 @@ class deleteAccount(DeleteView):
     success_url = reverse_lazy('index')
 
 
-#
+#главная страница
 class Index(ListView):
     model = Profile
     template_name = 'users/index.html'
@@ -172,3 +172,8 @@ class Index(ListView):
         context['profileprog'] = Profile.objects.filter(id_type_user__type_user_name='программист').order_by('-id')[:5][::-1]
         # context['vacancis'] = Project.objects.all().order_by('-id')[:10][::-1]
         return context
+
+#О нас
+class About(ListView):
+    model = Profile
+    template_name = 'users/about.html'
