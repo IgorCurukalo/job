@@ -1,7 +1,7 @@
 from django.urls import path
 from app.users.views import create_user, login_user, logout_user\
     , profile, ProfileListProg, ProfileListCom, Index, ProfileDetail\
-    , userAccount, editAccount, deleteAccount, About, Contact, Security
+    , userAccount, editAccount, DeleteAccount, About, Contact, Security
 from app.projects.views import ProjectDetail
 
 
@@ -15,7 +15,7 @@ urlpatterns = [
     path('profile/', profile, name='profile'),
     path('profile_user/', userAccount, name='profile_user'),
     path('editAccount/', editAccount, name='editAccount'),
-    path('deleteAccount/<int:pk>', deleteAccount.as_view(), name='deleteAccount'),
+    path('deleteAccount/<int:pk>', DeleteAccount.as_view(), name='deleteAccount'),
     path('profile_user/<int:pk>', ProjectDetail.as_view(), name='project'),
     #профили-программистов
     path('profile_list_prog/', ProfileListProg.as_view(), name='программист'),

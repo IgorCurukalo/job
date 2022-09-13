@@ -155,7 +155,7 @@ class ProfileDetail(DetailView):
 
 
 # удаление пользователя
-class deleteAccount(DeleteView):
+class DeleteAccount(DeleteView):
     model = User
     template_name = 'users/profile_delete.html'
     success_url = reverse_lazy('index')
