@@ -13,6 +13,8 @@
 #id_skills{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 5px;
 }
 
@@ -42,7 +44,6 @@
 }
 
 #button__find:hover {
-  cursor: pointer;
   background-color: #DCDCDC;
 
 }

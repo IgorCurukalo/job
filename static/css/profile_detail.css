@@ -18,13 +18,13 @@
 .profile_detail{
     padding-right: 32px;
     padding-left: 32px;
-    margin-top: 24px;
+    margin: 0 auto;
     text-align: center;
     display: flex;
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
-    max-width:90%;
+    width: 90%;
 }
 
 .profile_detail__about{
@@ -38,6 +38,7 @@
     justify-content: center;
     flex-wrap: wrap;
     height: 100%;
+    max-width: 150%;
 }
 
 .profile_detail__about_col{
@@ -75,6 +76,10 @@
 
 }
 
+profile_detail__about__all p {
+    width: 100%;
+}
+
 .profile_detail__about__biog{
     width:400px;
     align: left;
@@ -82,24 +87,26 @@
 
 .profile_detail__about__links{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
-    gap:10px;
+    height:50px;
+    align-items: center;
 }
 
 .profile_detail__about__links a{
-    margin-right: 5px;
     padding: 3px;
-    border-radius: 10px;
+    border-radius: 50%;
+    width:50px;
+    height:50px;
 }
-
-.profile_detail__about__links a:hover {
-    background-color: #DCDCDC;
-}
-
 
 img{
     border-radius: 10px;
+}
+
+img:hover{
+    opacity: 0.4;
+    transition: 0.35s;
 }
 
 .profile__pk{
@@ -113,7 +120,7 @@ img{
     background-color: #DCDCDC;
 }
 
-.button__update{
+#button__update{
     background-color: #A9A9A9;
     padding: 10px;
     text-align: center;
@@ -126,7 +133,15 @@ img{
     outline: 1px solid #000;
 }
 
-.button__update:hover {
-  cursor: pointer;
+#button__update:hover {
   background-color: #DCDCDC;
 }
+
+@media screen and (max-width: 600px) {
+    .profile_detail__about{
+        width: 160%;
+
+    }
+}
+
+

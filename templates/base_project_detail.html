@@ -18,7 +18,7 @@
                             <a id="button__update" href="{% url 'deleteProject' project.pk %}">Удалить</a>
                         </div>
                         <div class="profile__update">
-                            <a id="button__update" href="{% url 'profile_user' %}">Отмена</a>
+                            <a id="button__update" href="{% url 'profile_user' %}">Назад</a>
                         </div>
                     </div>
                 {% endif %}
@@ -34,7 +34,9 @@
                 <div class="profile_detail__about__links">
                     {% if project.demo_link %}
                     <h3>Демо-ссылка:</h3>
-                    <a href="{{ project.demo_link }}">{{ project.demo_link }}</a>
+                    <a href="{{ project.demo_link }}" class="header_information__links__img">
+                        <img src="/media/links/web.jpg" title = "web">
+                    </a>
                     {% endif %}
                 </div>
             </div>

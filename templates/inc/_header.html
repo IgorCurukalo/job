@@ -2,6 +2,28 @@
 {% block header %}
 <meta name="viewport" content="width=device-width, initial-scale=1">
     <body>
+    <div id="myNavLinks" class="overlay">
+        <a href="javascript:void(0)" onclick="closeNavLinks()">×</a>
+        <div class="overlay-content">
+            <a href="#">facebook</a>
+            <a href="#">instagram</a>
+            <a href="#">telegram</a>
+            <a href="#">twitter</a>
+        </div>
+    </div>
+    <div id="myNavMenu" class="overlay">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNavMenu()">×</a>
+        <div class="overlay-content">
+            <a  href="{% url 'index' %}">Главная</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'profile_user' %}">Мой профиль</a>
+                <a href="{% url 'logout' %}">Выйти</a>
+            {% else %}
+                <a href="{% url 'login' %}">Войти</a>
+                <a href="{% url 'register' %}">Регистрация</a>
+            {% endif %}
+        </div>
+    </div>
        <header>
            <div class="header__logotip">
                <div class="header__logotip__img">
@@ -16,26 +38,24 @@
                        <li><a id="header_information_info" href="{% url 'index' %}">Job/workers</a></li>
 <!--                       <li><a href="#">+8 999 *** ***</a></li>-->
                    </ul>
-                   <div class="header_information__links">
-
+                    <div class="header_information__links">
                             <a class="header_information__links__img" href="{% url 'index' %}">
-                                <img src="/media/links/f.jpg">
+                                <img src="/media/links/facebook.jpg" title = "facebook">
                             </a>
-
                             <a class="header_information__links__img" href="{% url 'index' %}">
-                                <img src="/media/links/i.jpg">
+                                <img src="/media/links/instagram.jpg" title = "instagram">
                             </a>
-
                             <a class="header_information__links__img" href="{% url 'index' %}">
-                                <img src="/media/links/t.jpg">
+                                <img src="/media/links/telegram.jpg" title = "telegram">
                             </a>
-
-
                             <a class="header_information__links__img" href="{% url 'index' %}">
-                                <img src="/media/links/tw.jpg">
+                                <img src="/media/links/twitter.jpg" title = "twitter">
                             </a>
-
-                   </div>
+                    </div>
+                    <div class="openmenu">
+                        <a class="openmenu__button" onclick="openNavLinks()">Сети ☰</a>
+                        <a class="openmenu__button" onclick="openNavMenu()">Меню ☰</a>
+                    </div>
                </div>
                <div class="header_navigation">
                    <nav>

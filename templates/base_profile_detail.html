@@ -35,17 +35,25 @@
                     {% endif %}
                     <h3>Ссылки:</h3>
                     <div class="profile_detail__about__links">
-                        {% if profile.github %}
-                            <a href="#">{{ profile.github }}</a>
+                       {% if profile.github %}
+                            <a href="{{ profile.github }}" class="header_information__links__img">
+                                <img src="/media/links/githab.jpg" title = "githab">
+                            </a>
                         {% endif %}
                         {% if profile.twitter %}
-                            <a href="#">{{ profile.twitter }}</a>
+                            <a href="{{ profile.twitter }}" class="header_information__links__img">
+                                <img src="/media/links/twitter.jpg" title = "twitter">
+                            </a>
                         {% endif %}
                         {% if profile.youtube %}
-                            <a href="#">{{ profile.youtube }}</a>
+                            <a href="{{ profile.youtube }}" class="header_information__links__img">
+                                <img src="/media/links/you.jpg" title = "youtube">
+                            </a>
                         {% endif %}
                         {% if profile.website %}
-                            <a href="#">{{ profile.website }}</a>
+                            <a href="{{ profile.website }}" class="header_information__links__img">
+                                <img src="/media/links/web.jpg" title = "web">
+                            </a>
                         {% endif %}
                     </div>
                 </div>
