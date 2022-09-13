@@ -175,15 +175,15 @@ class Index(ListView):
 
 #О нас
 class About(ListView):
-    model = Profile
+    model = User
     template_name = 'footer/about.html'
 
 #Контакты
 class Contact(ListView):
-    model = Profile
+    model = User
     template_name = 'footer/contact.html'
 
 #Безопасность
 class Security(ListView):
-    model = Profile
+    model = User
     template_name = 'footer/security.html'

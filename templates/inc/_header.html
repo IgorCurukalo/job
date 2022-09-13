@@ -17,7 +17,7 @@
     <div id="myNavMenu" class="overlay" onclick="closeNavMenu()">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNavMenu()">×</a>
         <div class="overlay-content">
-            <a  href="{% url 'index' %}">Главная</a>
+            <a href="{% url 'index' %}">Главная</a>
             {% if user.is_authenticated %}
                 <a href="{% url 'profile_user' %}">Мой профиль</a>
                 <a href="{% url 'logout' %}">Выйти</a>
@@ -39,8 +39,15 @@
 
                    <ul class="header_information_info">
                        <li><a id="header_information_info" href="{% url 'index' %}">Job/workers</a></li>
-<!--                       <li><a href="#">+8 999 *** ***</a></li>-->
                    </ul>
+                   <ul class="header_information_info">
+                      <li>Программистов: 2</li>
+                       <li>Вакансии: 10</li>
+                       <li>Компаний: 6</li>
+                    </ul>
+                    <div>
+                        <button id="myBtn" onclick="myFunction()">Pause</button>
+                    </div>
                     <div class="header_information__links">
                             <a class="header_information__links__img" href="{% url 'index' %}">
                                 <img src="/media/links/facebook.jpg" title = "facebook">
@@ -56,20 +63,20 @@
                             </a>
                     </div>
                     <div class="openmenu">
-                        <a class="openmenu__button" onclick="openNavLinks()">Сети ☰</a>
-                        <a class="openmenu__button" onclick="openNavMenu()">Меню ☰</a>
+                        <a class="change-text" onclick="openNavLinks()">Сети ☰</a>
+                        <a class="change-text" onclick="openNavMenu()">Меню ☰</a>
                     </div>
                </div>
                <div class="header_navigation">
                    <nav>
                        <ul class="header_navigation_nav">
-                           <li><a  href="{% url 'index' %}">Главная</a></li>
+                           <li><a  class="change-text" href="{% url 'index' %}">Главная</a></li>
                            {% if user.is_authenticated %}
-                           <li><a href="{% url 'profile_user' %}">Мой профиль</a></li>
-                           <li><a href="{% url 'logout' %}">Выйти</a></li>
+                           <li><a class="change-text" href="{% url 'profile_user' %}">Мой профиль</a></li>
+                           <li><a class="change-text" href="{% url 'logout' %}">Выйти</a></li>
                            {% else %}
-                           <li><a href="{% url 'login' %}">Войти</a></li>
-                           <li><a href="{% url 'register' %}">Регистрация</a></li>
+                           <li><a class="change-text" href="{% url 'login' %}">Войти</a></li>
+                           <li><a class="change-text" href="{% url 'register' %}">Регистрация</a></li>
                            {% endif %}
                        </ul>
                    </nav>

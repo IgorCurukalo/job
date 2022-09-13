@@ -8,7 +8,7 @@
     <div class="profile_detail">
         <div class="profile_detail__about">
             <div class="profile_detail__about__img">
-                <img src="{{ project.image.url }}" class="img_project">
+                <img src="{{ project.image.url }}" class="img_project" onclick="on()">
                 {% if user == project.user %}
                     <div class="flex_row">
                         <div class="profile__update">

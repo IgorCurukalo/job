@@ -10,13 +10,14 @@ html {
 }
 
 header{
-    background-color: #A9A9A9;
+    background: url(/media/fon/fon_header.jpg);
+    width: 100%;
+    height: auto;
 }
 
 .header{
     display: flex;
     flex-direction: column;
-    padding: 16px;
     font-size: 14px;
     line-height: 1.5;
     flex-wrap: nowrap;
@@ -38,7 +39,9 @@ a {
 .header_information{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
+    flex-wrap: wrap;
+
 }
 
 .header__logotip{
@@ -99,10 +102,11 @@ a {
 
 ul.header_information_info{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     margin: 0;
-    padding: 4px;
+    justify-content: center
+
 }
 
 ul.header_information_info li{
@@ -110,6 +114,7 @@ ul.header_information_info li{
     display: inline;
     margin-right: 5px;
     padding: 3px;
+    font-weight:bold;
 }
 
 .header_information_links{
@@ -138,9 +143,14 @@ ul.header_navigation_nav li{
     height: 30px;
 }
 
-ul.header_navigation_nav li:hover {
-    background-color: #DCDCDC;
+ul.header_navigation_nav li:hover, .change-text:hover {
+    color: #b9b9b9;
 }
+
+ul.header_navigation_nav li:hover{
+    background-color: #455a65;
+}
+
 
 
 body{
@@ -155,7 +165,9 @@ footer{
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: #A9A9A9;
+    background: url(/media/fon/fon_header.jpg);
+    width: 100%;
+    height: auto;
 }
 
 .footer{
@@ -179,7 +191,10 @@ ul.footer_info li{
     display: inline;
     margin-right: 5px;
     padding: 3px;
+    font-weight:bold;
 }
+
+
 
 ul.footer_links{
     margin: 0;
@@ -197,8 +212,12 @@ ul.footer_links li{
     border-radius: 10px;
 }
 
-ul.footer_links li:hover {
-    background-color: #DCDCDC;
+ul.footer_links li:hover, .change-text:hover {
+    color: #b9b9b9;
+}
+
+ul.footer_links li:hover{
+    background-color: #455a65;
 }
 
 
@@ -430,4 +449,3 @@ main{
 
     }
 }
-
