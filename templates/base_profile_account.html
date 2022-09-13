@@ -12,18 +12,18 @@
                     <img src="{{ profile.image.url }}" class="img_profile">
                     <div class="flex_row">
                         <div class="profile__update">
-                            <a id="button__update" href="{% url 'editAccount' %}">Изменить</a>
+                            <a class="button__update" href="{% url 'editAccount' %}">Изменить</a>
                         </div>
                         <div class="profile__update">
-                            <a id="button__update" href="{% url 'deleteAccount' user.pk %}">Удалить</a>
+                            <a class="button__update" href="{% url 'deleteAccount' user.pk %}">Удалить</a>
                         </div>
                         {% if profile.id_type_user.type_user_name == 'компания' %}
                         <div class="profile__update">
-                            <a id="button__update" href="#">Добавить вакансию</a>
+                            <a class="button__update" href="#">Добавить вакансию</a>
                         </div>
                         {% else %}
                         <div class="profile__update">
-                            <a id="button__update" href="{% url 'addProject' %}">Добавить проект</a>
+                            <a class="button__update" href="{% url 'addProject' %}">Добавить проект</a>
                         </div>
                         {% endif %}
                     </div>

@@ -2,16 +2,19 @@
 {% block header %}
 <meta name="viewport" content="width=device-width, initial-scale=1">
     <body>
-    <div id="myNavLinks" class="overlay">
+    <div id="overlay_img" class="overlay" onclick="off()">
+        <img src="{{ project.image.url }}" class="img_project over_img">
+    </div>
+    <div id="myNavLinks" class="overlay" onclick="closeNavLinks()">
         <a href="javascript:void(0)" onclick="closeNavLinks()">×</a>
         <div class="overlay-content">
-            <a href="#">facebook</a>
-            <a href="#">instagram</a>
-            <a href="#">telegram</a>
-            <a href="#">twitter</a>
+            <a href="#" onclick="closeNavMenu()">facebook</a>
+            <a href="#" onclick="closeNavMenu()">instagram</a>
+            <a href="#" onclick="closeNavMenu()">telegram</a>
+            <a href="#" onclick="closeNavMenu()">twitter</a>
         </div>
     </div>
-    <div id="myNavMenu" class="overlay">
+    <div id="myNavMenu" class="overlay" onclick="closeNavMenu()">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNavMenu()">×</a>
         <div class="overlay-content">
             <a  href="{% url 'index' %}">Главная</a>

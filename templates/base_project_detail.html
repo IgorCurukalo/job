@@ -12,20 +12,22 @@
                 {% if user == project.user %}
                     <div class="flex_row">
                         <div class="profile__update">
-                            <a id="button__update" href="{% url 'editProject' project.pk %}">Изменить</a>
+                            <a class="button__update" href="{% url 'editProject' project.pk %}">Изменить</a>
                         </div>
                         <div class="profile__update">
-                            <a id="button__update" href="{% url 'deleteProject' project.pk %}">Удалить</a>
+                            <a class="button__update" href="{% url 'deleteProject' project.pk %}">Удалить</a>
                         </div>
                         <div class="profile__update">
-                            <a id="button__update" href="{% url 'profile_user' %}">Назад</a>
+                            <a class="button__update" href="{% url 'profile_user' %}">Назад</a>
                         </div>
                     </div>
                 {% endif %}
             </div>
             <div class="profile_detail__about__all">
                 {% if project.title %}
-                <h3><p>{{ project.title }}</p></h3>
+                    <h3>
+                        <p>{{ project.title }}</p>
+                    </h3>
                 {% endif %}
                 <h3>Описание:</h3>
                 {% if project.description %}

@@ -176,4 +176,14 @@ class Index(ListView):
 #О нас
 class About(ListView):
     model = Profile
-    template_name = 'users/about.html'
+    template_name = 'footer/about.html'
+
+#Контакты
+class Contact(ListView):
+    model = Profile
+    template_name = 'footer/contact.html'
+
+#Безопасность
+class Security(ListView):
+    model = Profile
+    template_name = 'footer/security.html'
