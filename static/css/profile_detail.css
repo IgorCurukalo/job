@@ -93,12 +93,13 @@ profile_detail__about__all p {
     align-items: center;
 }
 
+/*
 .profile_detail__about__links a{
     padding: 3px;
     border-radius: 50%;
     width:50px;
     height:50px;
-}
+}*/
 
 img{
     border-radius: 10px;
@@ -140,7 +141,6 @@ img:hover{
 @media screen and (max-width: 600px) {
     .profile_detail__about{
         width: 160%;
-
     }
 }
 

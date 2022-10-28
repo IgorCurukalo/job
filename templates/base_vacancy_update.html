@@ -1,0 +1,27 @@
+{% load static %}
+{% include "inc/_inc.html" %}
+{% include "inc/_header.html" %}
+<!--{% load crispy_forms_tags %}-->
+<main>
+<div class="base_profile">
+    <div class="base_profile__avatar">
+          <h2 class="account-heading">{{ vacancys.vakancy_name }}</h2>
+    </div>
+    <div class="base_profile__form">
+        <div class="base_profile_form">
+           <form method="POST" enctype="multipart/form-data">
+               {% csrf_token %}
+               <fieldset class="base_profile_form__fields">
+                   <legend class="base_profile_form__legend">Заполните вакансию</legend>
+                   {{ form.as_p }}
+                   <div class="base_profile_form__field">
+                       <button type="submit" class="button_upd">Обновить</button>
+                       <a href="{% url 'profile_user' %}" class="button">Отмена</a>
+                   </div>
+               </fieldset>
+           </form>
+        </div>
+    </div>
+</div>
+</main>
+{% include "inc/_footer.html" %}

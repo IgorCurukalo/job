@@ -4,10 +4,10 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-
+#Профиль пользователя
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='Пользователь')
-    profile_name = models.CharField(max_length=250, blank=True, null=True, verbose_name='Программист/компания')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, default="", verbose_name='Пользователь')
+    profile_name = models.CharField(max_length=250, blank=True, null=True, verbose_name='Название профиля')
     tel = models.CharField(max_length=16, blank=True, verbose_name='Телефон')
     skills = models.ManyToManyField(
         'Skills',
@@ -30,8 +30,6 @@ class Profile(models.Model):
     twitter = models.CharField(max_length=100, blank=True, null=True, verbose_name='Ссылка на twitter')
     youtube = models.CharField(max_length=100, blank=True, null=True, verbose_name='Ссылка на youtube')
     website = models.CharField(max_length=100, blank=True, null=True, verbose_name='Ссылка на сайт')
-    # date_add = models.DateTimeField(auto_now_add=True, null=True, verbose_name='Дата добавления')
-    # is_deleted = models.BooleanField(default=False, verbose_name='Удалено')
 
     @receiver(post_save, sender=User)
     def create_profile(sender, instance, created, **kwargs):
@@ -43,13 +41,14 @@ class Profile(models.Model):
         instance.profile.save()
 
     def __str__(self):
-        return f'{self.user.username}'
+        return f'{self.profile_name}'
 
     class Meta:
         verbose_name = 'Профиль'
         verbose_name_plural = 'Профили'
 
 
+#Тип пользователя (программист/компания)
 class TypeUser(models.Model):
     type_user_name = models.CharField(max_length=100, blank=True, null=True, verbose_name='Тип пользователя')
     description = models.TextField(null=True, blank=True, verbose_name='Описание типа пользователя')
@@ -64,6 +63,7 @@ class TypeUser(models.Model):
         verbose_name_plural = 'типы'
 
 
+#Скиллы
 class Skills(models.Model):
     skills_name = models.CharField(max_length=100, blank=True, null=True, verbose_name='Скилл')
     description = models.TextField(null=True, blank=True, verbose_name='Описание скилла')
@@ -79,5 +79,4 @@ class Skills(models.Model):
 
 
 class ProfileInSkills(admin.TabularInline):
-
     model = Profile.skills.through

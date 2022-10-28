@@ -1,6 +1,7 @@
 {% load static %}
 {% block include %}
-    <html>
+    <!DOCTYPE html>
+    <html lang="ru">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -8,6 +9,7 @@
         <title>Job/workers</title>
 
         <!-- CSS here -->
+        <link rel=”icon” href="{% static 'css/style.css' %}">
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <link rel="stylesheet" href="{% static 'css/index.css' %}">
         <link rel="stylesheet" href="{% static 'css/login.css' %}">
@@ -15,5 +17,6 @@
         <link rel="stylesheet" href="{% static 'css/profile.css' %}">
         <link rel="stylesheet" href="{% static 'css/profile_list.css' %}">
         <link rel="stylesheet" href="{% static 'css/profile_detail.css' %}">
+        <link rel="stylesheet" href="{% static 'css/vacancy.css' %}">
     </head>
 {% endblock %}

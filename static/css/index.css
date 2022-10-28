@@ -37,17 +37,14 @@ img {
   min-width: 300px;
 }
 
-
 .mySlides, mySlides2, mySlides3  {
   display: flex;
   justify-content: center;
 }
 
-
 .cursor {
   cursor: pointer;
 }
-
 
 .prev {
   left: 0;
@@ -141,7 +138,7 @@ img {
 .slider_central{
     display:flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
     padding-top: 30px;

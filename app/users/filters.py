@@ -2,6 +2,7 @@ import django_filters
 from django import forms
 from app.users.models import Profile, Skills
 
+
 class ProfileFilter(django_filters.FilterSet):
 
     skills_query = Skills.objects.all()

@@ -1,0 +1,46 @@
+.vacancy__tasks{
+    text-align: left;
+    max-width: 100%;
+}
+
+.vakancy__container{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.vakancy__about{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    outline: 1px solid #000;
+    max-width: none;
+    max-height: none;
+    border-radius: 20px;
+    margin:10px;
+    background-color: #A9A9A9;
+}
+
+.vakancy__about:hover {
+    border-radius: 30px;
+    background-color: #DCDCDC;
+}
+
+.vakancy__about::after {
+    transition: opacity 1s ease;
+}
+
+.vakancy__about:hover::after {
+    opacity: 0.5;
+}
+
+.vakancy__about a{
+    padding: 0;
+
+}
+
+.vakancy__top{
+    top: 100%;
+}

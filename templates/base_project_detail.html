@@ -24,23 +24,18 @@
                 {% endif %}
             </div>
             <div class="profile_detail__about__all">
-                {% if project.title %}
-                    <h3>
-                        <p>{{ project.title }}</p>
-                    </h3>
-                {% endif %}
+                <h3><p>{{ project.title }}</p></h3>
                 <h3>Описание:</h3>
-                {% if project.description %}
-                    <p class="profile_detail__about__biog">{{ project.description }}</p>
-                {% endif %}
+                <p class="profile_detail__about__biog">{{ project.description }}</p>
                 <div class="profile_detail__about__links">
                     {% if project.demo_link %}
-                    <h3>Демо-ссылка:</h3>
-                    <a href="{{ project.demo_link }}" class="header_information__links__img">
-                        <img src="/media/links/web.jpg" title = "web">
-                    </a>
+                        <h3>Демо-ссылка:</h3>
+                        <a href="{{ project.demo_link }}" class="header_information__links__img">
+                            <img src="/media/links/web.jpg" title = "web">
+                        </a>
                     {% endif %}
                 </div>
+                <a class="button__update" onClick="javascript:history.go(-1);">Назад</a>
             </div>
         </div>
     </div>

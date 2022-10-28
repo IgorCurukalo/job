@@ -19,7 +19,7 @@
                         </div>
                         {% if profile.id_type_user.type_user_name == 'компания' %}
                         <div class="profile__update">
-                            <a class="button__update" href="#">Добавить вакансию</a>
+                            <a class="button__update" href="{% url 'addVacancy' %}">Добавить вакансию</a>
                         </div>
                         {% else %}
                         <div class="profile__update">
@@ -84,12 +84,22 @@
                     {% endif %}
                 </div>
                 <div class="profile_detail__about_crow">
-                    {% for pro in projects%}
-                        <a href="{{ pro.id }}">
-                            <img src="{{ pro.image.url }}" class="img_project__mini">
-                            <p>{{ pro.title }}</p>
-                        </a>
-                    {% endfor %}
+                    {% if profile.id_type_user.type_user_name == 'компания' %}
+                        {% for vac in vacancys %}
+                            <a class="outline" href="{% url 'vacancy' vac.pk %}">
+                                <H3><p>{{ vac.vakancy_name }}</p></H3>
+                                <p>{{ vac.salary }}</p>
+                                <p>Дата создания: {{ vac.date_add }}</p>
+                            </a>
+                        {% endfor %}
+                    {% else %}
+                        {% for pro in projects %}
+                            <a class="outline" href="{% url 'project' pro.pk %}">
+                                <img src="{{ pro.image.url }}" class="img_project__mini">
+                                <p>{{ pro.title }}</p>
+                            </a>
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
         </div>

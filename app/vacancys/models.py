@@ -1,14 +1,17 @@
 from django.contrib import admin
 from django.db import models
 from django.contrib.auth.models import User
+from app.users.models import Profile, Skills
+
 
 #вакансии
 class Vakancys(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default="", verbose_name='Компания')
-    vakancy_name = models.CharField(max_length=100, verbose_name='Название вакансии')
-    salary = models.CharField(max_length=10, null=False, blank=True, default="з/п не указана", verbose_name='Заработная плата')
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, default="", verbose_name='Компания')
+    vakancy_name = models.CharField(max_length=100, null=False, blank=True, verbose_name='Название вакансии')
+    salary = models.CharField(max_length=100, null=False, blank=True, default="з/п не указана", verbose_name='Заработная плата')
     description = models.TextField(max_length=3000, verbose_name='Описание вакансии')
-    experience = models.CharField(max_length=3, verbose_name='Опыт работы')
+    tasks = models.TextField(max_length=3000, default=" ", verbose_name='Описание задачи')
+    experience = models.CharField(max_length=100, verbose_name='Опыт работы')
     busyness = models.ForeignKey(
         'Busyness',
         on_delete=models.CASCADE,
@@ -17,12 +20,8 @@ class Vakancys(models.Model):
         null=True,
         blank=True
     )
-    count = models.CharField(max_length=5, verbose_name='Количество просмотров')
-    tasks = models.ManyToManyField(
-        'Tasks',
-        related_name='vakancys',
-        verbose_name='Задачи'
-    )
+    skills = models.ManyToManyField(Skills, verbose_name='Скиллы')
+    count = models.CharField(max_length=10, default="0", verbose_name='Количество просмотров')
     date_add = models.DateTimeField(auto_now_add=True, verbose_name='Дата добавления')
     is_deleted = models.BooleanField(default=False, verbose_name='Удалено')
 
@@ -38,7 +37,7 @@ class Vakancys(models.Model):
 class Busyness(models.Model):
     busyness_name = models.CharField(max_length=300, verbose_name='Название занятости')
     date_add = models.DateTimeField(auto_now_add=True, verbose_name='Дата добавления')
-    is_daleted = models.BooleanField(default=False, verbose_name='Удалено')
+    is_deleted = models.BooleanField(default=False, verbose_name='Удалено')
 
     def __str__(self):
         return self.busyness_name
@@ -47,20 +46,6 @@ class Busyness(models.Model):
         verbose_name = 'Занятость'
         verbose_name_plural = 'Занятости'
 
-#Задачи, которые требует решить
-class Tasks(models.Model):
-    tasks_name = models.TextField(max_length=3000, verbose_name='Описание задачи')
-    date_add = models.DateTimeField(auto_now_add=True, verbose_name='Дата добавления')
-    is_daleted = models.BooleanField(default=False, verbose_name='Удалено')
 
-    def __str__(self):
-        return self.tasks_name
-
-    class Meta:
-        verbose_name = 'Задача'
-        verbose_name_plural = 'Задачи'
-
-
-class VakancysInTasks(admin.TabularInline):
-
-    model = Vakancys.tasks.through
+class VakancysInSkills(admin.TabularInline):
+    model = Vakancys.skills.through

@@ -3,6 +3,7 @@ from django_filters.views import FilterView
 from django.views.generic import DetailView, ListView, DeleteView
 from django.core.paginator import Paginator
 from django.conf import settings
+from django.db.models import Count
 from django.urls import reverse_lazy
 from django.contrib import auth
 from django.contrib.auth.models import User
@@ -10,6 +11,7 @@ from django.contrib import messages
 from app.users.forms import RegistrationForm, LoginForm, UserUpdateForm, ProfileUpdateForm, ProfileUpdateFormAvatar
 from app.users.models import Profile
 from app.projects.models import Project
+from app.vacancys.models import Vakancys, Busyness
 from app.users.filters import ProfileFilter
 
 #Создание пользователя
@@ -86,11 +88,12 @@ def profile(request):
     }
     return render(request, 'users/profile.html', context)
 
-#просмотр акаунта пользователя (профиль + проекты)
+#просмотр акаунта пользователя (профиль + проекты/вакансии)
 def userAccount(request):
     profile = request.user.profile
     projects = Project.objects.filter(user=request.user)
-    context = {'profile': profile, 'projects': projects}
+    vacancys = Vakancys.objects.filter(profile=request.user.profile)
+    context = {'profile': profile, 'projects': projects, 'vacancys': vacancys}
     return render(request, 'users/profile_account.html', context)
 
 #изменение аккаунта пользователя
@@ -151,6 +154,7 @@ class ProfileDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super(ProfileDetail, self).get_context_data(**kwargs)
         context['projects'] = Project.objects.filter(user=self.object.user)
+        context['vacancys'] = Vakancys.objects.filter(profile=self.object.user.profile)
         return context
 
 
@@ -170,7 +174,10 @@ class Index(ListView):
         context = super().get_context_data(**kwargs)
         context['profilecom'] = Profile.objects.filter(id_type_user__type_user_name='компания').order_by('-id')[:5][::-1]
         context['profileprog'] = Profile.objects.filter(id_type_user__type_user_name='программист').order_by('-id')[:5][::-1]
-        # context['vacancis'] = Project.objects.all().order_by('-id')[:10][::-1]
+        context['vacancys'] = Vakancys.objects.all().order_by('-id')[:5][::-1]
+        context['countProfileCom'] = Profile.objects.filter(id_type_user__type_user_name='компания').count()
+        context['countProfileProg'] = Profile.objects.filter(id_type_user__type_user_name='программист').count()
+        context['countVacancys'] = Vakancys.objects.all().count()
         return context
 
 #О нас

@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'job.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'job',
+        'NAME': 'jobs',
         'USER': 'postgres',
         'PASSWORD': '1621',
         'HOST': 'localhost',

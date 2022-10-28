@@ -56,8 +56,11 @@
                             </a>
                         {% endif %}
                     </div>
+                    <div class="flex_row">
+                        <a class="button__update" onClick="javascript:history.go(-1);">Назад</a>
+                    </div>
                 </div>
-        </div>
+            </div>
             <div class="profile_detail__about_col">
                 <div class="">
                     {% if profile.id_type_user.type_user_name == 'компания' %}
@@ -67,12 +70,22 @@
                     {% endif %}
                 </div>
                 <div class="profile_detail__about_crow">
-                    {% for pro in projects%}
-                        <a href="/profile_list_prog/project/{{ pro.id }}">
-                            <img src="{{ pro.image.url }}" class="img_project__mini">
-                            <p>{{ pro.title }}</p>
-                        </a>
-                    {% endfor %}
+                    {% if profile.id_type_user.type_user_name == 'компания' %}
+                        {% for vak in vacancys %}
+                            <a href="{% url 'profile_detail_vacancy' vak.pk %}">
+                                <H3><p>{{ vak.vakancy_name }}</p></H3>
+                                <p>{{ vak.salary }}</p>
+                                <p>Дата создания: {{ vak.date_add }}</p>
+                            </a>
+                        {% endfor %}
+                    {% else %}
+                        {% for pro in projects%}
+                            <a href="{% url 'profile_detail_project' pro.pk %}">
+                                <img src="{{ pro.image.url }}" class="img_project__mini">
+                                <p>{{ pro.title }}</p>
+                            </a>
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
         </div>
