@@ -29,6 +29,7 @@ urlpatterns = [
     path('profile_list_com/<int:pk>', ProfileDetail.as_view(), name='profile_detail_com'),
     path('profile_user/vacancys/company/<int:pk>', ProfileDetail.as_view(), name='profile_detail_com_vak'),
     path('profile_list_com/vacancys/<int:pk>', VacancysDetail.as_view(), name='profile_detail_vacancy'),
+    path('profile_list_com/vacancys/company/<int:pk>', ProfileDetail.as_view(), name='pprofile_detail_vacancy_com_vak'),
     #footer
     path('about/', About.as_view(), name='about'),
     path('contact/', Contact.as_view(), name='contact'),

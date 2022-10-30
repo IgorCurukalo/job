@@ -1,0 +1,18 @@
+{% load static %}
+{% include "inc/_inc.html" %}
+{% include "inc/_header.html" %}
+<main>
+  <div class="content-box">
+    <div class="content-box__all">
+      <div class="content-box__all__setup">
+        <h4><a href="{% url 'profile_detail_com' msg.sender.id  %}" class="message__subject">Пользователь: {{ msg.sender }}</a></h4>
+          <p class="message__author">Тема: {{ msg.name_msg }}</p>
+          <p class="message__date">Дата/время: {{ msg.date_add }}</p>
+          <p class="message__body">Сообщение: {{ msg.body|linebreaksbr }}</p>
+          <a class="button__update" onClick="javascript:history.go(-1);">Назад</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+{% include "inc/_footer.html" %}

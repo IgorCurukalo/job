@@ -42,8 +42,8 @@ INSTALLED_APPS = [
     'app.users.apps.UsersConfig',
     'app.projects.apps.ProjectsConfig',
     'app.vacancys.apps.VacancysConfig',
+    'app.msg.apps.MsgConfig',
 
-    'crispy_forms',
 ]
 
 MIDDLEWARE = [

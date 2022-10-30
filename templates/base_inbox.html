@@ -1,0 +1,52 @@
+{% load static %}
+{% include "inc/_inc.html" %}
+{% include "inc/_header.html" %}
+<main>
+  <div class="content-box">
+    <h3>Новые сообщения: {{unreadCount}}</h3>
+    <div class="content-box__all">
+      <div class="content-box__all__setup">
+        <h3 class="inbox__title">Входящие сообщения:</h3>
+        <ul class="messages">
+          {% for message in messageRecipient %}
+            {% if message.is_read == False %}
+              <li class="button message__unread">
+                {% else %}
+              <li class="button">
+                {% endif %}
+                <a href="{% url 'msg' message.id %}">
+                  <ul>
+                    <li class="message__author">Отправитель: {{message.sender}} </li>
+                    <li class="message__author">Тема: {{message.name_msg}} </li>
+                    <li class="message__date">Дата/время: {{message.date_add}}</li>
+                  </ul>
+                </a>
+              </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="content-box__all__setup">
+        <h3 class="inbox__title">Исходящие сообщения:</h3>
+        <ul class="messages">
+          {% for message in messageSender %}
+            {% if message.is_read == False %}
+              <li class="button message__unread">
+                {% else %}
+              <li class="button">
+                {% endif %}
+                <a href="{% url 'msg' message.id %}">
+                  <ul>
+                    <li class="message__author">Получатель: {{message.recipient}} </li>
+                    <li class="message__author">Тема: {{message.name_msg}} </li>
+                    <li class="message__date">Дата/время: {{message.date_add}}</li>
+                  </ul>
+                </a>
+              </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</main>
+
+{% include "inc/_footer.html" %}

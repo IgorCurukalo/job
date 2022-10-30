@@ -73,7 +73,8 @@
 }
 
 .profile_detail__about__all{
-
+    display: flex;
+    align-items: center;
 }
 
 profile_detail__about__all p {
@@ -93,14 +94,6 @@ profile_detail__about__all p {
     align-items: center;
 }
 
-/*
-.profile_detail__about__links a{
-    padding: 3px;
-    border-radius: 50%;
-    width:50px;
-    height:50px;
-}*/
-
 img{
     border-radius: 10px;
 }
@@ -108,6 +101,10 @@ img{
 img:hover{
     opacity: 0.4;
     transition: 0.35s;
+}
+
+.img_hover_no{
+    opacity: unset;
 }
 
 .profile__pk{
@@ -130,7 +127,7 @@ img:hover{
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
-    border-radius: 10%;
+    border-radius: 10px;
     outline: 1px solid #000;
 }
 

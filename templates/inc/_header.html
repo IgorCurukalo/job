@@ -21,6 +21,7 @@
             <a href="{% url 'index' %}">Главная</a>
             {% if user.is_authenticated %}
                 <a href="{% url 'profile_user' %}">Мой профиль</a>
+                <a href="{% url 'inbox' %}">Мои сообщения {{unreadCount}}</a>
                 <a href="{% url 'logout' %}">Выйти</a>
             {% else %}
                 <a href="{% url 'login' %}">Войти</a>
@@ -41,10 +42,10 @@
                    <ul class="header_information_info">
                        <li><a id="header_information_info" href="{% url 'index' %}">Job/workers</a></li>
                    </ul>
-                   <ul class="header_information_info">
-                       <li>Программистов: {{ countProfileProg }}</li>
-                       <li>Компаний: {{ countProfileCom }}</li>
-                       <li>Вакансии: {{ countVacancys }}</li>
+                   <ul class="header_information_info header_navigation_nav">
+                       <li><a class="change-text" href="/profile_list_prog/">Программистов: {{ countProfileProg }}</a></li>
+                       <li><a class="change-text" href="/profile_list_com/">Компаний: {{ countProfileCom }}</a></li>
+                       <li><a class="change-text" href="/vacancys_list/">Вакансии: {{ countVacancys }}</a></li>
                     </ul>
                     <div>
                         <button id="myBtn" onclick="myFunction()">Pause</button>
@@ -74,6 +75,7 @@
                            <li><a  class="change-text" href="{% url 'index' %}">Главная</a></li>
                            {% if user.is_authenticated %}
                            <li><a class="change-text" href="{% url 'profile_user' %}">Мой профиль</a></li>
+                           <li><a class="change-text" href="{% url 'inbox' %}">Мои сообщения {{unreadCount}}</a></li>
                            <li><a class="change-text" href="{% url 'logout' %}">Выйти</a></li>
                            {% else %}
                            <li><a class="change-text" href="{% url 'login' %}">Войти</a></li>

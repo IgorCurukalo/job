@@ -123,6 +123,7 @@ ul.header_information_info li{
     font-weight:bold;
 }
 
+
 .header_information_links{
     display: flex;
     flex-direction: row;

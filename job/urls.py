@@ -9,6 +9,7 @@ urlpatterns = [
     path('', include('app.users.urls')),
     path('', include('app.projects.urls')),
     path('', include('app.vacancys.urls')),
+    path('', include('app.msg.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

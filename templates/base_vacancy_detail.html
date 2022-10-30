@@ -1,9 +1,6 @@
 {% load static %}
-
 {% include "inc/_inc.html" %}
-
 {% include "inc/_header.html" %}
-
 <main>
     <div class="profile_detail">
         <div class="profile_detail__about">
@@ -17,16 +14,11 @@
             <div class="profile_detail__about__all">
                 {% for vak in vacancys %}
                     <h3><p>{{ vak.vakancy_name }}</p></h3>
-                    <h3>ЗП:</h3>
-                    <p>{{ vak.salary }}</p>
-                    <h3>Опыт работы:</h3>
-                    <p>{{ vak.experience }}</p>
-                    <h3>Занятость:</h3>
-                    <p>{{ vak.busyness }}</p>
-                    <h3>Описание:</h3>
-                    <p class="vacancy__tasks">{{ vak.description }}</p>
-                    <h3>Задачи:</h3>
-                    <p class="vacancy__tasks">{{ vak.tasks }}</p>
+                    <p><h3>ЗП:</h3> {{ vak.salary }}</p>
+                    <p><h3>Опыт работы:</h3> {{ vak.experience }}</p>
+                    <p><h3>Занятость:</h3> {{ vak.busyness }}</p>
+                    <p class="vacancy__tasks"><h3>Описание:</h3> {{ vak.description }}</p>
+                    <p class="vacancy__tasks"><h3>Задачи:</h3> {{ vak.tasks }}</p>
                 {% endfor %}
                 <h3>Скиллы:</h3>
                     {% for sk in vacancys %}
@@ -34,10 +26,9 @@
                             <p>{{ skill.skills_name }}</p>
                         {% endfor %}
                     {% endfor %}
-                <div class="vacancy__tasks">
+                <div>
                     {% for vak in vacancys %}
-                        <h3>Количество просмотров:</h3>
-                        <p>{{ vak.count }}</p>
+                        <p><h3>Количество просмотров:</h3> {{ vak.count }}</p>
                     {% endfor %}
                         {% for vak in vacancys %}
                             {% if user == vak.profile.user %}
@@ -47,9 +38,6 @@
                                 </div>
                                 <div class="profile__update">
                                     <a class="button__update" href="{% url 'deleteVacancy' vak.pk %}">Удалить</a>
-                                </div>
-                                <div class="profile__update">
-                                    <a class="button__update" href="{% url 'profile_user' %}">Назад</a>
                                 </div>
                             </div>
                         {% else %}

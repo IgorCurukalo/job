@@ -11,8 +11,10 @@ from django.contrib import messages
 from app.users.forms import RegistrationForm, LoginForm, UserUpdateForm, ProfileUpdateForm, ProfileUpdateFormAvatar
 from app.users.models import Profile
 from app.projects.models import Project
-from app.vacancys.models import Vakancys, Busyness
+from app.vacancys.models import Vakancys
+from app.msg.models import Msg
 from app.users.filters import ProfileFilter
+from app.users.count import countVacancys, countProfileProg, countProfileCom
 
 #Создание пользователя
 def create_user(request):
@@ -29,7 +31,10 @@ def create_user(request):
         form = RegistrationForm()
     form = RegistrationForm()
     context = {
-        'form': form
+        'form': form,
+        'countProfileCom': countProfileCom,
+        'countProfileProg': countProfileProg,
+        'countVacancys': countVacancys,
     }
     return render(request, 'users/registration.html', context=context)
 
@@ -50,7 +55,10 @@ def login_user(request):
         form = LoginForm()
     form = LoginForm()
     context = {
-        'form': form
+        'form': form,
+        'countProfileCom': countProfileCom,
+        'countProfileProg': countProfileProg,
+        'countVacancys': countVacancys,
     }
     return render(request, 'users/login.html', context=context)
 
@@ -84,7 +92,10 @@ def profile(request):
     context = {
         'u_form': u_form,
         'p_form': p_form,
-        'p_form_avatar': p_form_avatar
+        'p_form_avatar': p_form_avatar,
+        'countProfileCom': countProfileCom,
+        'countProfileProg': countProfileProg,
+        'countVacancys': countVacancys,
     }
     return render(request, 'users/profile.html', context)
 
@@ -93,7 +104,16 @@ def userAccount(request):
     profile = request.user.profile
     projects = Project.objects.filter(user=request.user)
     vacancys = Vakancys.objects.filter(profile=request.user.profile)
-    context = {'profile': profile, 'projects': projects, 'vacancys': vacancys}
+    messageRecipient = Msg.objects.filter(recipient=profile)
+    unreadCount = f'({messageRecipient.filter(is_read=False).count()})'
+    context = {'profile': profile,
+               'projects': projects,
+               'vacancys': vacancys,
+               'countProfileCom': countProfileCom,
+               'countProfileProg': countProfileProg,
+               'countVacancys': countVacancys,
+               'unreadCount': f'({Msg.objects.filter(recipient=profile, is_read=False).count()})'
+               }
     return render(request, 'users/profile_account.html', context)
 
 #изменение аккаунта пользователя
@@ -121,7 +141,11 @@ def editAccount(request):
     context = {
         'u_form': u_form,
         'p_form': p_form,
-        'p_form_avatar': p_form_avatar
+        'p_form_avatar': p_form_avatar,
+        'countVacancys': countVacancys,
+        'countProfileProg': countProfileProg,
+        'countProfileCom': countProfileCom,
+        'unreadCount': f'({Msg.objects.filter(recipient=profile, is_read=False).count()})'
     }
     return render(request, 'users/profile.html', context)
 
@@ -135,6 +159,17 @@ class ProfileListCom(FilterView):
     queryset = Profile.objects.filter(id_type_user__type_user_name='компания')
     paginate_by = 3
 
+    def get_context_data(self, **kwargs):
+        context = super(ProfileListCom, self).get_context_data(**kwargs)
+        context['countProfileCom'] = countProfileCom
+        context['countProfileProg'] = countProfileProg
+        context['countVacancys'] = countVacancys
+        if User.is_authenticated:
+            context['unreadCount'] = f'({Msg.objects.filter(recipient=self.request.user.id, is_read=False).count()})'
+        else:
+            context['unreadCount'] = ''
+        return context
+
 
 #Список профилей-программистов
 class ProfileListProg(FilterView):
@@ -144,6 +179,17 @@ class ProfileListProg(FilterView):
     template_name = 'users/profile_list.html'
     queryset = Profile.objects.filter(id_type_user__type_user_name='программист')
     paginate_by = 3
+
+    def get_context_data(self, **kwargs):
+        context = super(ProfileListProg, self).get_context_data(**kwargs)
+        context['countProfileCom'] = countProfileCom
+        context['countProfileProg'] = countProfileProg
+        context['countVacancys'] = countVacancys
+        if User.is_authenticated:
+            context['unreadCount'] = f'({Msg.objects.filter(recipient=self.request.user.id, is_read=False).count()})'
+        else:
+            context['unreadCount'] = ''
+        return context
 
 
 #детализация профиля пользователя
@@ -155,6 +201,13 @@ class ProfileDetail(DetailView):
         context = super(ProfileDetail, self).get_context_data(**kwargs)
         context['projects'] = Project.objects.filter(user=self.object.user)
         context['vacancys'] = Vakancys.objects.filter(profile=self.object.user.profile)
+        context['countProfileCom'] = countProfileCom
+        context['countProfileProg'] = countProfileProg
+        context['countVacancys'] = countVacancys
+        if User.is_authenticated:
+            context['unreadCount'] = f'({Msg.objects.filter(recipient=self.request.user.id, is_read=False).count()})'
+        else:
+            context['unreadCount'] = ''
         return context
 
 
@@ -163,6 +216,14 @@ class DeleteAccount(DeleteView):
     model = User
     template_name = 'users/profile_delete.html'
     success_url = reverse_lazy('index')
+
+    def get_context_data(self, **kwargs):
+        context = super(DeleteAccount, self).get_context_data(**kwargs)
+        context['countProfileCom'] = countProfileCom
+        context['countProfileProg'] = countProfileProg
+        context['countVacancys'] = countVacancys
+        context['unreadCount'] = f'({Msg.objects.filter(recipient=self.request.user.id, is_read=False).count()})'
+        return context
 
 
 #главная страница
@@ -175,9 +236,10 @@ class Index(ListView):
         context['profilecom'] = Profile.objects.filter(id_type_user__type_user_name='компания').order_by('-id')[:5][::-1]
         context['profileprog'] = Profile.objects.filter(id_type_user__type_user_name='программист').order_by('-id')[:5][::-1]
         context['vacancys'] = Vakancys.objects.all().order_by('-id')[:5][::-1]
-        context['countProfileCom'] = Profile.objects.filter(id_type_user__type_user_name='компания').count()
-        context['countProfileProg'] = Profile.objects.filter(id_type_user__type_user_name='программист').count()
-        context['countVacancys'] = Vakancys.objects.all().count()
+        context['countProfileCom'] = countProfileCom
+        context['countProfileProg'] = countProfileProg
+        context['countVacancys'] = countVacancys
+        context['unreadCount'] = f'({Msg.objects.filter(recipient=self.request.user.id, is_read=False).count()})'
         return context
 
 #О нас
@@ -185,12 +247,36 @@ class About(ListView):
     model = User
     template_name = 'footer/about.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(About, self).get_context_data(**kwargs)
+        context['countProfileCom'] = countProfileCom
+        context['countProfileProg'] = countProfileProg
+        context['countVacancys'] = countVacancys
+        context['unreadCount'] = f'({Msg.objects.filter(recipient=self.request.user.id, is_read=False).count()})'
+        return context
+
 #Контакты
 class Contact(ListView):
     model = User
     template_name = 'footer/contact.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(Contact, self).get_context_data(**kwargs)
+        context['countProfileCom'] = countProfileCom
+        context['countProfileProg'] = countProfileProg
+        context['countVacancys'] = countVacancys
+        context['unreadCount'] = f'({Msg.objects.filter(recipient=self.request.user.id, is_read=False).count()})'
+        return context
+
 #Безопасность
 class Security(ListView):
     model = User
     template_name = 'footer/security.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(Security, self).get_context_data(**kwargs)
+        context['countProfileCom'] = countProfileCom
+        context['countProfileProg'] = countProfileProg
+        context['countVacancys'] = countVacancys
+        context['unreadCount'] = f'({Msg.objects.filter(recipient=self.request.user.id, is_read=False).count()})'
+        return context
