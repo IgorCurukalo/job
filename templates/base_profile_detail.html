@@ -55,7 +55,9 @@
                     </div>
                     <div class="flex_row">
                         <a class="button__update" onClick="javascript:history.go(-1);">Назад</a>
-                        <a class="button__update" href="{% url 'create-msg' profile.id %}">Отправить сообщение</a>
+                        {% if user.is_active %}
+                            <a class="button__update" href="{% url 'create-msg' profile.id %}">Отправить сообщение</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
