@@ -39,6 +39,9 @@
                                 <div class="profile__update">
                                     <a class="button__update" href="{% url 'deleteVacancy' vak.pk %}">Удалить</a>
                                 </div>
+                                <div class="flex_row">
+                                <a class="button__update" onClick="javascript:history.go(-1);">Назад</a>
+                                </div>
                             </div>
                         {% else %}
                             <div class="flex_row">

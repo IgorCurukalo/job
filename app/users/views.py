@@ -93,8 +93,8 @@ def profile(request):
         'u_form': u_form,
         'p_form': p_form,
         'p_form_avatar': p_form_avatar,
-        'countProfileCom': countProfileCom,
-        'countProfileProg': countProfileProg,
+        'countProfileCom': Profile.objects.filter(id_type_user__type_user_name='компания').count(),
+        'countProfileProg': Profile.objects.filter(id_type_user__type_user_name='программист').count(),
         'countVacancys': countVacancys,
     }
     return render(request, 'users/profile.html', context)
@@ -118,6 +118,7 @@ def userAccount(request):
 
 #изменение аккаунта пользователя
 def editAccount(request):
+    profile = request.user.profile
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST,

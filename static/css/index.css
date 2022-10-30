@@ -106,7 +106,7 @@ img {
 }
 
 .column__img{
-    max-height: 50px;
+    height: 50px;
     max-width: 50px;
     border-radius: 50%;
     vertical-align: middle;
@@ -131,6 +131,7 @@ img {
 }
 
 .centers img{
+    min-height:150%;
     max-width:100%;
     border-radius: 50%;
 }
