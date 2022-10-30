@@ -1,4 +1,7 @@
 from django.shortcuts import render, redirect
+from django.views.generic import DeleteView
+from django.urls import reverse_lazy
+from django.contrib.auth.models import User
 from app.users.models import Profile
 from app.msg.models import Msg
 from app.msg.forms import MsgForm
@@ -58,3 +61,20 @@ def createMessage(request, pk):
                'unreadCount': f'({Msg.objects.filter(recipient=profile, is_read=False).count()})'
                }
     return render(request, 'msg/message_form.html', context)
+
+# удаление пользователя
+class DeleteMessage(DeleteView):
+    model = Msg
+    template_name = 'msg/message_delete.html'
+    success_url = reverse_lazy('inbox')
+
+    def get_context_data(self, **kwargs):
+        context = super(DeleteMessage, self).get_context_data(**kwargs)
+        context['countProfileCom'] = countProfileCom
+        context['countProfileProg'] = countProfileProg
+        context['countVacancys'] = countVacancys
+        if User.is_authenticated:
+            context['unreadCount'] = f'({Msg.objects.filter(recipient=self.request.user.id, is_read=False).count()})'
+        else:
+            context['unreadCount'] = ''
+        return context

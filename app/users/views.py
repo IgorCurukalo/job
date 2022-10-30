@@ -1,9 +1,6 @@
 from django.shortcuts import render, redirect
 from django_filters.views import FilterView
 from django.views.generic import DetailView, ListView, DeleteView
-from django.core.paginator import Paginator
-from django.conf import settings
-from django.db.models import Count
 from django.urls import reverse_lazy
 from django.contrib import auth
 from django.contrib.auth.models import User
@@ -220,8 +217,8 @@ class DeleteAccount(DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super(DeleteAccount, self).get_context_data(**kwargs)
-        context['countProfileCom'] = countProfileCom
-        context['countProfileProg'] = countProfileProg
+        context['countProfileCom'] = Profile.objects.filter(id_type_user__type_user_name='компания').count()
+        context['countProfileProg'] = Profile.objects.filter(id_type_user__type_user_name='программист').count()
         context['countVacancys'] = countVacancys
         context['unreadCount'] = f'({Msg.objects.filter(recipient=self.request.user.id, is_read=False).count()})'
         return context

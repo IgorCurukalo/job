@@ -9,7 +9,14 @@
           <p class="message__author">Тема: {{ msg.name_msg }}</p>
           <p class="message__date">Дата/время: {{ msg.date_add }}</p>
           <p class="message__body">Сообщение: {{ msg.body|linebreaksbr }}</p>
-          <a class="button__update" onClick="javascript:history.go(-1);">Назад</a>
+          <div class="profile__update">
+            <a class="button__update" onClick="javascript:history.go(-1);">Назад</a>
+          </div>
+        {% if msg.sender == request.user.profile %}
+          <div class="profile__update">
+            <a class="button__update" href="{% url 'delete-msg' msg.pk %}">Удалить</a>
+          </div>
+        {% endif %}
       </div>
     </div>
   </div>
