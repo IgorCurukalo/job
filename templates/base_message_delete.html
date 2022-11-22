@@ -5,16 +5,16 @@
 <div class="base_profile">
     <div class="base_profile__form">
         <div class="base_profile_form">
-           <form method="POST" enctype="multipart/form-data">
+           <form class="" method="POST" enctype="multipart/form-data">
                {% csrf_token %}
-               <fieldset class="base_profile_form__fields">
-                   <legend class="base_profile_form__legend">Удаление сообщения</legend>
-                   <h2 class="account-heading">Тема: {{ msg.name_msg }}</h2>
-                   <p>Сообщение: "{{ msg.body }}"</p>
+               <fieldset class="base_profile_form__fields br">
+                   <legend class="base_profile_form__legend v_article">Удаление сообщения</legend>
+                   <p>Тема: {{ msg.name_msg }}</p>
+                   <p class="v_article">Сообщение: "{{ msg.body }}"</p>
                    <p>Вы готовы удалить сообщение?</p>
                    <div class="base_profile_form__field">
-                       <button type="submit" class="button_upd">Удалить</button>
-                       <a href="{% url 'inbox' %}" class="button">Отмена</a>
+                       <a type="submit" class="button__update">Удалить</a>
+                       <a href="{% url 'inbox' %}" class="button__update">Отмена</a>
                    </div>
                </fieldset>
            </form>

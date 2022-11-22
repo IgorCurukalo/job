@@ -10,14 +10,14 @@
         <ul class="messages">
           {% for message in messageRecipient %}
             {% if message.is_read == False %}
-              <li class="button message__unread">
+              <li class="button left v_article message__unread">
                 {% else %}
-              <li class="button">
+              <li class="button left v_article">
                 {% endif %}
                 <a href="{% url 'msg' message.id %}">
                   <ul>
                     <li class="message__author">Отправитель: {{message.sender}} </li>
-                    <li class="message__author">Тема: {{message.name_msg}} </li>
+                    <li class="message__title">Тема: {{message.name_msg}} </li>
                     <li class="message__date">Дата/время: {{message.date_add}}</li>
                   </ul>
                 </a>
@@ -30,14 +30,14 @@
         <ul class="messages">
           {% for message in messageSender %}
             {% if message.is_read == False %}
-              <li class="button message__unread">
+              <li class="button left v_article message__unread">
                 {% else %}
-              <li class="button">
+              <li class="button left v_article">
                 {% endif %}
                 <a href="{% url 'msg' message.id %}">
                   <ul>
                     <li class="message__author">Получатель: {{message.recipient}} </li>
-                    <li class="message__author">Тема: {{message.name_msg}} </li>
+                    <li class="message__title">Тема: {{message.name_msg}} </li>
                     <li class="message__date">Дата/время: {{message.date_add}}</li>
                   </ul>
                 </a>

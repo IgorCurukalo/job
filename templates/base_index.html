@@ -8,7 +8,7 @@
                 <H3><a href="{% url 'программист' %}">
                     <div class="index__button">
                         <img src="/media/fon/programmer.jpg">
-                        Поиск программистов
+                        Поиск программистов ({{ countProfileProg }})
                     </div>
                 </a></H3>
             </div>
@@ -17,7 +17,7 @@
                  <H3><a href="{% url 'компания' %}">
                      <div class="index__button">
                         <img src="/media/fon/company.jpg">
-                        Поиск компании
+                        Поиск компании ({{ countProfileCom }})
                     </div>
                  </a></H3>
             </div>
@@ -26,7 +26,7 @@
                  <H3><a href="{% url 'findVacancy' %}">
                      <div class="index__button">
                         <img src="/media/fon/work.jpg">
-                        Поиск вакансии
+                        Поиск вакансии ({{ countVacancys }})
                      </div>
                  </a></H3>
             </div>
@@ -37,60 +37,87 @@
     <!--    Последние 5 программистов-->
             <div class="container">
                 {% for prog in profileprog  %}
-                    <div class="mySlides">
+                    <div class="mySlides v_article">
                         <a href="profile_list_prog/{{ prog.pk }}">
+                        <div class="centers"><h4>Программист</h4></div>
+                        <div class="flex_row_g">
                             <div class="centers">
                                     <img src="{{ prog.image.url }}">
                                     <h3>{{ prog.profile_name }}</h3>
+                                    <div class="centers"><h4>{{ prog.user.last_name }} {{ prog.user.first_name }}</h4></div>
                             </div>
+                            <div class="left_scroll">
+                                <div class="left">
+                                    {% for skill in prog.skills.all %}
+                                        <p>{{ skill.skills_name }}</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
                         </a>
                     </div>
                 {% endfor %}
-              <a class="prev" onclick="plusSlides(-1)">❮</a>
-              <a class="next" onclick="plusSlides(1)">❯</a>
               <a>
                   <div class="row">
                       {% for prog in profileprog  %}
                             <img class="demo cursor column__img" src="{{ prog.image.url }}" onclick="currentSlide({{ forloop.counter }})" alt="Последние 5 пользователей">
                       {% endfor %}
                   </div>
-                  <h4>Последние 5 программистов</h4>
               </a>
             </div>
     <!--    Последние 5 компаний-->
             <div class="container">
                 {% for com in profilecom  %}
-                    <div class="mySlides2">
+                    <div class="mySlides2 v_article">
                         <a href="profile_list_com/{{ com.pk }}">
-                            <div class="centers">
-                                    <img src="{{ com.image.url }}">
+                            <div class="centers"><h4>Компания</h4></div>
+                            <div class="flex_row_g">
+                                <div class="centers">
+                                    <img class="img_w" src="{{ com.image.url }}">
                                     <h3>{{ com.profile_name }}</h3>
                             </div>
+                            <div class="left_scroll">
+                                <div class="left">
+                                    {% for skill in com.skills.all %}
+                                        <p>{{ skill.skills_name }}</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
                         </a>
                     </div>
                 {% endfor %}
-              <a class="prev" onclick="plusSlides2(-1)">❮</a>
-              <a class="next" onclick="plusSlides2(1)">❯</a>
+<!--              <a class="prev" onclick="plusSlides2(-1)">❮</a>-->
+<!--              <a class="next" onclick="plusSlides2(1)">❯</a>-->
               <a>
                   <div class="row">
                       {% for com in profilecom  %}
                             <img class="demo2 cursor column__img" src="{{ com.image.url }}" onclick="currentSlide2({{ forloop.counter }})" alt="Последние 5 компаний">
                       {% endfor %}
                   </div>
-                  <h4>Последние 5 компаний</h4>
               </a>
             </div>
     </div>
     <!--    Последние 5 вакансий-->
-    <div class="vakancy__container">
-          <div class="vakancy__container">
-                <h4>Последние 5 вакансий:</h4>
-                <div class="vakancy__container__all">
+    <div class="v__container">
+          <div class="v__container">
+                <div>
                    {% for vak in vacancys  %}
-                        <div class="demo3 cursor vakancy__about" onclick="location.href='profile_user/vacancys/{{ vak.pk }}';" alt="Последние 5 вакансий">
-                            <a><h2>{{ vak.vakancy_name }}</h2></a>
-                            <a><h4>Заработная плата:</h4> {{ vak.salary }}</a>
-                        </div>
+                    <article class="v_article">
+                        <ul>
+                            <li class="cursor" onclick="location.href='profile_user/vacancys/{{ vak.pk }}';"><h4>{{ vak.vakancy_name }}</h4></li>
+                            <li>{{ vak.salary }}</li>
+                            <hr>
+                            <li>{{ vak.description }}</li>
+                            <li>
+                                {% if user.is_active %}
+                                    <a class="button__update" onclick="location.href='create-message/{{ vak.profile.pk }}';">Откликнуться</a>
+                                {% else %}
+                                    <a class="button__update" href="{% url 'login' %}">Откликнуться</a>
+                                {% endif %}
+                            </li>
+                        </ul>
+                    </article>
                    {% endfor %}
                 </div>
           </div>

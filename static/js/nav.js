@@ -1,23 +1,31 @@
 function openNavMenu() {
-    document.getElementById("myNavMenu").style.width = "100%";
+    document.getElementById("NavMenu").classList.toggle("show");
 }
 
-function closeNavMenu() {
-    document.getElementById("myNavMenu").style.width = "0%";
+window.onclick = function(event) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
 }
 
 function openNavLinks() {
-    document.getElementById("myNavLinks").style.width = "100%";
+    document.getElementById("NavLinks").classList.toggle("show");
 }
 
-function closeNavLinks() {
-    document.getElementById("myNavLinks").style.width = "0%";
-}
+window.onclick = function(event) {
 
-function on() {
-    document.getElementById("overlay_img").style.width = "100%";
-}
-
-function off() {
-    document.getElementById("overlay_img").style.width = "0%";
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
 }

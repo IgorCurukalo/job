@@ -13,7 +13,7 @@
            <form method="POST" enctype="multipart/form-data">
                {% csrf_token %}
                <fieldset class="base_profile_form__fields">
-                   <legend class="base_profile_form__legend">Заполните ваш профиль/аватар</legend>
+                   <legend class="base_profile_form__legend v_article">Заполните ваш профиль/аватар</legend>
                    {% for field in u_form %}
                         <div class="base_profile_form__field">
                             <label>{{ field.label }}</label>
@@ -32,7 +32,7 @@
                             {% endfor %}
                         </div>
                    {% endfor %}
-                    <fieldset class="base_profile_form__fields__avatar">
+                    <fieldset class="v_article">
                         {% for field in p_form_avatar %}
                            <div class="base_profile_form__field">
                                <legend class="base_profile_form__legend">{{ field.label }}</legend>
@@ -44,8 +44,8 @@
                        {% endfor %}
                    </fieldset>
                    <div class="base_profile_form__field">
-                       <button type="submit" class="button_upd">Обновить</button>
-                       <a href="{% url 'profile_user' %}" class="button">Отмена</a>
+                       <button type="submit" class="button__update">Обновить</button>
+                       <a href="{% url 'profile_user' %}" class="button__update">Отмена</a>
                    </div>
                </fieldset>
            </form>

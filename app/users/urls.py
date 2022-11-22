@@ -1,7 +1,7 @@
 from django.urls import path
 from app.users.views import create_user, login_user, logout_user\
     , profile, ProfileListProg, ProfileListCom, Index, ProfileDetail\
-    , userAccount, editAccount, DeleteAccount, About, Contact, Security
+    , userAccount, editAccount, DeleteAccount
 from app.projects.views import ProjectDetail
 from app.vacancys.views import VacancysDetail
 
@@ -30,8 +30,4 @@ urlpatterns = [
     path('profile_user/vacancys/company/<int:pk>', ProfileDetail.as_view(), name='profile_detail_com_vak'),
     path('profile_list_com/vacancys/<int:pk>', VacancysDetail.as_view(), name='profile_detail_vacancy'),
     path('profile_list_com/vacancys/company/<int:pk>', ProfileDetail.as_view(), name='pprofile_detail_vacancy_com_vak'),
-    #footer
-    path('about/', About.as_view(), name='about'),
-    path('contact/', Contact.as_view(), name='contact'),
-    path('security/', Security.as_view(), name='security'),
     ]

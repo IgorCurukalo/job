@@ -5,7 +5,7 @@
     <div class="content-box">
         <div class="base_profile_form">
             <br>
-            <form class="base_profile_form__fields" method="POST">
+            <form class="v_article" method="POST">
                 {% csrf_token %}
                 <div class="base_profile_form__field">
                     <label for="formInput#text">{{ form.name_msg.label }}</label>
@@ -16,8 +16,8 @@
                     {{ form.body }}
                 </div>
                     <div class="base_profile_form__field">
-                        <a class="button" onClick="javascript:history.go(-1);">Назад</a>
-                       <button class="button_upd" style="" type="submit">Отправить</button>
+                        <a class="button__update" onClick="javascript:history.go(-1);">Назад</a>
+                       <button class="button__update" style="" type="submit">Отправить</button>
                     </div>
 
             </form>

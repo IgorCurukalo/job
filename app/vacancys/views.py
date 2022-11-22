@@ -8,7 +8,6 @@ from app.vacancys.forms import VakancysUpdateForm, VakancysAddForm
 from app.vacancys.filters import VacancysFilter
 from app.users.models import Profile
 from app.msg.models import Msg
-from app.users.count import countVacancys, countProfileProg, countProfileCom
 
 
 # создание вакансии
@@ -24,9 +23,6 @@ class AddVacancy(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(AddVacancy, self).get_context_data(**kwargs)
-        context['countProfileCom'] = countProfileCom
-        context['countProfileProg'] = countProfileProg
-        context['countVacancys'] = countVacancys
         if User.is_authenticated:
             context['unreadCount'] = f'({Msg.objects.filter(recipient=self.request.user.id, is_read=False).count()})'
         else:
@@ -42,9 +38,6 @@ class EditVacancy(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(EditVacancy, self).get_context_data(**kwargs)
-        context['countProfileCom'] = countProfileCom
-        context['countProfileProg'] = countProfileProg
-        context['countVacancys'] = countVacancys
         if User.is_authenticated:
             context['unreadCount'] = f'({Msg.objects.filter(recipient=self.request.user.id, is_read=False).count()})'
         else:
@@ -60,9 +53,6 @@ class DeleteVacancy(DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super(DeleteVacancy, self).get_context_data(**kwargs)
-        context['countProfileCom'] = countProfileCom
-        context['countProfileProg'] = countProfileProg
-        context['countVacancys'] = countVacancys
         if User.is_authenticated:
             context['unreadCount'] = f'({Msg.objects.filter(recipient=self.request.user.id, is_read=False).count()})'
         else:
@@ -79,9 +69,6 @@ class VacancysDetail(DetailView):
         context = super(VacancysDetail, self).get_context_data(**kwargs)
         context['vacancys'] = Vakancys.objects.filter(id=self.object.id)
         context['profile'] = Profile.objects.filter(profile_name=self.object.profile.profile_name)
-        context['countProfileCom'] = countProfileCom
-        context['countProfileProg'] = countProfileProg
-        context['countVacancys'] = countVacancys
         if User.is_authenticated:
             context['unreadCount'] = f'({Msg.objects.filter(recipient=self.request.user.id, is_read=False).count()})'
         else:
@@ -105,9 +92,6 @@ class VacancysList(FilterView):
 
     def get_context_data(self, **kwargs):
         context = super(VacancysList, self).get_context_data(**kwargs)
-        context['countProfileCom'] = countProfileCom
-        context['countProfileProg'] = countProfileProg
-        context['countVacancys'] = countVacancys
         if User.is_authenticated:
             context['unreadCount'] = f'({Msg.objects.filter(recipient=self.request.user.id, is_read=False).count()})'
         else:

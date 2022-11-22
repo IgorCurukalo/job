@@ -12,11 +12,11 @@
            <form method="POST" enctype="multipart/form-data">
                {% csrf_token %}
                <fieldset class="base_profile_form__fields">
-                   <legend class="base_profile_form__legend">Заполните проект/аватар</legend>
+                   <legend class="base_profile_form__legend v_article">Заполните проект/аватар</legend>
                    {{ form.as_p }}
                    <div class="base_profile_form__field">
-                       <button type="submit" class="button_upd">Обновить</button>
-                       <a href="{% url 'profile_user' %}" class="button">Отмена</a>
+                       <button type="submit" class="button__update">Обновить</button>
+                       <a href="{% url 'profile_user' %}" class="button__update">Отмена</a>
                    </div>
                </fieldset>
            </form>

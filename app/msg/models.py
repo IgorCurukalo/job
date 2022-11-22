@@ -14,8 +14,8 @@ class Msg(models.Model):
                                   blank=True,
                                   related_name="message",
                                   verbose_name="Получатель")
-    name_msg = models.CharField(max_length=250, null=True, blank=True, verbose_name='Тема')
-    body = models.TextField(verbose_name='сообщение')
+    name_msg = models.CharField(max_length=250, null=False, blank=True, verbose_name='Тема')
+    body = models.TextField(null=False, verbose_name='сообщение')
     is_read = models.BooleanField(default=False, null=True, verbose_name='статус сообщения')
     date_add = models.DateTimeField(auto_now_add=True, verbose_name='дата/время создания')
 

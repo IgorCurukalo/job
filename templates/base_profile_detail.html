@@ -4,9 +4,9 @@
 <main>
     <div class="profile">
         <div class="profile_detail">
-            <div class="profile_detail__about">
+            <div class="v_article">
                 <div class="profile_detail__about__img">
-                    <img src="{{ profile.image.url }}" class="img_profile img_hover_no">
+                    <img class="img_w" src="{{ profile.image.url }}" class="img_profile img_hover_no">
                 </div>
             <div class="profile_detail__about__all">
                     {% if profile.profile_name %}
@@ -14,9 +14,12 @@
                     {% endif %}
                     {% if profile.skills %}
                         <h3>Скиллы:</h3>
-                        {% for skill in profile.skills.all %}
-                            <p>{{ skill.skills_name }}</p>
-                        {% endfor %}
+                        <div class="flex_row">
+                            {% for skill in profile.skills.all %}
+                                <p>{{ skill.skills_name }}</p>
+                                <p>, </p>
+                            {% endfor %}
+                        </div>
                     {% endif %}
                     {% if profile.tel %}
                         <h3>Телефон:</h3>
@@ -61,7 +64,7 @@
                     </div>
                 </div>
             </div>
-            <div class="profile_detail__about_col">
+            <div class="v_article">
                 <div class="">
                     {% if profile.id_type_user.type_user_name == 'компания' %}
                         <p>Вакансии:</p>

@@ -7,14 +7,14 @@
 {% if user.is_active %}
 
 <main>
-    <div class="profil_list__filter">
+    <div class="profil_list__filter v_article">
         <H3>Поиск ...</H3>
         <form method="get" class="#">
             <div class="profil_list__filter__fields">
                 {{ filter.form.as_p }}
             </div>
             <div class="profil_list__filter__button">
-                <button id="button__find" type="submit" Class="btn">Найти</button>
+                <button class="button__update" type="submit" Class="btn">Найти</button>
             </div>
         </form>
     </div>

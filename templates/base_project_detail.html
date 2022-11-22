@@ -11,12 +11,9 @@
                 <img src="{{ project.image.url }}" class="img_project" onclick="on()">
                 {% if user == project.user %}
                     <div class="flex_row">
-                        <div class="profile__update">
-                            <a class="button__update" href="{% url 'editProject' project.pk %}">Изменить</a>
-                        </div>
-                        <div class="profile__update">
-                            <a class="button__update" href="{% url 'deleteProject' project.pk %}">Удалить</a>
-                        </div>
+                        <a class="button__update" href="{% url 'editProject' project.pk %}">Изменить</a>
+                        <a class="button__update" href="{% url 'deleteProject' project.pk %}">Удалить</a>
+                        <a class="button__update" onClick="javascript:history.go(-1);">Назад</a>
                     </div>
                 {% endif %}
             </div>
@@ -32,7 +29,7 @@
                         </a>
                     {% endif %}
                 </div>
-                <a class="button__update" onClick="javascript:history.go(-1);">Назад</a>
+
             </div>
         </div>
     </div>
