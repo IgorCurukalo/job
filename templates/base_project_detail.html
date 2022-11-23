@@ -6,16 +6,9 @@
 
 <main>
     <div class="profile_detail">
-        <div class="profile_detail__about">
+        <div class="v_article">
             <div class="profile_detail__about__img">
                 <img src="{{ project.image.url }}" class="img_project" onclick="on()">
-                {% if user == project.user %}
-                    <div class="flex_row">
-                        <a class="button__update" href="{% url 'editProject' project.pk %}">Изменить</a>
-                        <a class="button__update" href="{% url 'deleteProject' project.pk %}">Удалить</a>
-                        <a class="button__update" onClick="javascript:history.go(-1);">Назад</a>
-                    </div>
-                {% endif %}
             </div>
             <div class="profile_detail__about__all">
                 <h3><p>{{ project.title }}</p></h3>
@@ -29,7 +22,17 @@
                         </a>
                     {% endif %}
                 </div>
-
+                {% if user == project.user %}
+                    <div class="flex_row">
+                        <a class="button__update" href="{% url 'editProject' project.pk %}">Изменить</a>
+                        <a class="button__update" href="{% url 'deleteProject' project.pk %}">Удалить</a>
+                        <a class="button__update" onClick="javascript:history.go(-1);">Назад</a>
+                    </div>
+                {% else %}
+                    <div class="flex_row">
+                        <a class="button__update" onClick="javascript:history.go(-1);">Назад</a>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>

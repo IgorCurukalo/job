@@ -206,7 +206,7 @@ class Index(ListView):
         context = super().get_context_data(**kwargs)
         context['profilecom'] = Profile.objects.filter(id_type_user__type_user_name='компания').order_by('-id')[:5][::-1]
         context['profileprog'] = Profile.objects.filter(id_type_user__type_user_name='программист').order_by('-id')[:5][::-1]
-        context['vacancys'] = Vakancys.objects.all().order_by('-id')[:5][::-1]
+        context['vacancys'] = Vakancys.objects.all().order_by('-id')[:5][::1]
         context['countProfileCom'] = countProfileCom
         context['countProfileProg'] = countProfileProg
         context['countVacancys'] = countVacancys

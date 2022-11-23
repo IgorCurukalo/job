@@ -23,8 +23,8 @@ class VakancysUpdateForm(forms.ModelForm):
         model = Vakancys
         fields = ['vakancy_name', 'salary', 'description', 'tasks', 'experience', 'busyness', 'skills']
         widgets = {
-            'description': forms.Textarea(),
-            'tasks': forms.Textarea(),
+            'description': forms.Textarea(attrs={'class': 'vacancy__flex'}),
+            'tasks': forms.Textarea(attrs={'class': 'vacancy__flex'}),
         }
 
 
@@ -54,6 +54,6 @@ class VakancysAddForm(forms.ModelForm):
         model = Vakancys
         fields = ['vakancy_name', 'salary', 'description', 'tasks', 'experience', 'busyness', 'skills']
         widgets = {
-            'description': forms.Textarea(),
-            'tasks': forms.Textarea(),
+            'description': forms.Textarea(attrs={'class': 'vacancy__flex'}),
+            'tasks': forms.Textarea(attrs={'class': 'vacancy__flex'}),
         }
