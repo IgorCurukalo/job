@@ -36,3 +36,11 @@
 .message__title{
     font-weight:bold;
 }
+
+.msg_w {
+    width: 100%;
+}
+
+.msg_w:hover{
+    background: #3a6e006b;
+}

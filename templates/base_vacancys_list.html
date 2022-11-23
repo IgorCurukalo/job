@@ -22,23 +22,21 @@
 
 <div class="profile__block">
 {% for vak in page_obj %}
+    <article class="v_article w_procent w_msg">
+        <ul>
+            <li><img class="img_w" src="{{ vak.profile.image.url }}" class="img_profile"></li>
+            <li class="cursor" onclick="location.href='profile_user/vacancys/{{ vak.pk }}';"><h4>{{ vak.vakancy_name }}</h4></li>
+            <li>{{ vak.salary }}</li>
+            <hr>
+            <li>{{ vak.description }}</li>
 
-        <a href="{{ vak.pk }}">
-            <div class="profile__pk">
-                <div class="profile__pk_user">
-                    <h3>{{ vak.vakancy_name }}</h3>
-                </div>
-                <div class="profile__pk_skills">
-                    {% for skill in vak.skills.all %}
-                        <p>{{ skill.skills_name }}</p>
-                    {% endfor %}
-                </div>
-                <div class="profile__pk_salary">
-                    <h3>{{ vak.salary }}</h3>
-                </div>
-            </div>
-        </a>
-
+        </ul>
+                {% if user.is_active %}
+                    <a class="button__update" onclick="location.href='create-message/{{ vak.profile.pk }}';">Откликнуться</a>
+                {% else %}
+                    <a class="button__update" href="{% url 'login' %}">Откликнуться</a>
+                {% endif %}
+    </article>
 {% endfor %}
 
 </div>

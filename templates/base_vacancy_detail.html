@@ -48,8 +48,12 @@
                         {% else %}
                             <div class="flex_row">
                                 <a class="button__update" onClick="javascript:history.go(-1);">Назад</a>
+                                {% if user.is_active %}
+                                    <a class="button__update" href="{% url 'create-msg' vak.profile.id %}">Отправить сообщение</a>
+                                {% endif %}
                             </div>
                         {% endif %}
+
                     {% endfor %}
                 </div>
             </div>

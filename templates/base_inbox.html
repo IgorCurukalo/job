@@ -10,9 +10,9 @@
         <ul class="messages">
           {% for message in messageRecipient %}
             {% if message.is_read == False %}
-              <li class="button left v_article message__unread">
+              <li class="button left v_article message__unread msg_w">
                 {% else %}
-              <li class="button left v_article">
+              <li class="button left v_article msg_w">
                 {% endif %}
                 <a href="{% url 'msg' message.id %}">
                   <ul>
@@ -30,9 +30,9 @@
         <ul class="messages">
           {% for message in messageSender %}
             {% if message.is_read == False %}
-              <li class="button left v_article message__unread">
+              <li class="button left v_article message__unread msg_w">
                 {% else %}
-              <li class="button left v_article">
+              <li class="button left v_article msg_w">
                 {% endif %}
                 <a href="{% url 'msg' message.id %}">
                   <ul>

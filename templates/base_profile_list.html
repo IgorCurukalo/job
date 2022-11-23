@@ -18,21 +18,33 @@
 
 <div class="profile__block">
 {% for prof in page_obj %}
-    <div class="profile__pk">
-        <a href="{{ prof.pk }}">
-            <div>
-                <img src="{{ prof.image.url }}" class="img_profile">
-            </div>
-            <div class="profile__pk_user">
-                <h3>{{ prof.profile_name }}</h3>
-            </div>
-            <div class="profile__pk_skills">
-                {% for skill in prof.skills.all %}
-                    <p>{{ skill.skills_name }}</p>
-                {% endfor %}
-            </div>
-        </a>
-    </div>
+    <a href="{{ prof.pk }}">
+    <article class="v_article w_procent w_msg">
+        <ul style="text-align: center;">
+            <li><img class="img_w" src="{{ prof.image.url }}" class="img_profile"></li>
+            <li class="cursor" onclick="location.href='profile_user/vacancys/{{ prof.pk }}';"><h4>{{ vak.vakancy_name }}</h4></li>
+            <li><h4>{{ prof.profile_name }}</h4></li>
+            <li>{{ prof.user.last_name }} {{ prof.user.first_name }}</li>
+            <hr>
+            <li>
+                 <div class="flex_row">
+                    {% for skill in prof.skills.all %}
+                        <p>{{ skill.skills_name }}</p>
+                        <p>, </p>
+                    {% endfor %}
+                </div>
+            </li>
+            <li>{{ prof.description }}</li>
+
+        </ul>
+                {% if user.is_active %}
+                    <a class="button__update" onclick="location.href='create-message/{{ prof.pk }}';">Отправить сообщение</a>
+                {% else %}
+                    <a class="button__update" href="{% url 'login' %}">Отправить сообщение</a>
+                {% endif %}
+    </article>
+</a>
+
 {% endfor %}
 
 </div>
