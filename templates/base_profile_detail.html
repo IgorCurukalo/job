@@ -10,7 +10,8 @@
                 </div>
             <div class="profile_detail__about__all">
                     {% if profile.profile_name %}
-                        <p>{{ profile.profile_name }}</p>
+                        <p><h3>{{ profile.profile_name }}</h3></p>
+                        <p>{{ profile.user.last_name }} {{ profile.user.first_name }}</p>
                     {% endif %}
                     {% if profile.skills %}
                         <h3>Скиллы:</h3>
