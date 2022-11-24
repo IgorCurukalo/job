@@ -456,8 +456,8 @@ main{
         width: 200px;
     }
 
-    .footer{
-        height:103px;
+    .slider_central{
+        padding-top: 0px;
     }
 
     .footer_links{
